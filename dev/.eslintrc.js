@@ -1,0 +1,36 @@
+module.exports = {
+  root: true,
+  env: {
+    node: true,
+  },
+  extends: [
+    'plugin:vue/vue3-essential',
+    '@vue/airbnb',
+    '@vue/typescript/recommended',
+  ],
+  parserOptions: {
+    ecmaVersion: 2020,
+  },
+  rules: {
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    indent: 'off',
+    'no-restricted-syntax': 'off',
+    'import/prefer-default-export': 'off',
+    'no-param-reassign': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    'object-curly-newline': 'off',
+    'import/extensions': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/no-namespace': 'off',
+    'no-shadow': 'off',
+    'no-return-assign': 'off',
+    'prefer-promise-reject-errors': 'off',
+    'no-use-before-define': 'off',
+    'import/no-unresolved': 'off',
+    'vuejs-accessibility/click-events-have-key-events': 'off',
+    'lines-between-class-members': 'off',
+    'no-underscore-dangle': 'off',
+    'class-methods-use-this': 'off',
+  },
+};

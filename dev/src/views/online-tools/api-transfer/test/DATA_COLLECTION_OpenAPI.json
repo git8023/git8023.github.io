@@ -1,0 +1,6199 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "DATA_COLLECTION API 文档",
+    "version": "1.0.0",
+    "title": "DATA_COLLECTION API文档",
+    "termsOfService": "http://127.0.0.1/",
+    "contact": {
+      "name": "platform.com"
+    }
+  },
+  "host": "10.0.1.193:7031",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "全局常量",
+      "description": "Constant Controller"
+    },
+    {
+      "name": "大屏首页",
+      "description": "Big Screen Controller"
+    },
+    {
+      "name": "文件上传",
+      "description": "File Upload Controller"
+    },
+    {
+      "name": "模型数据配置",
+      "description": "Model Data Config Controller"
+    },
+    {
+      "name": "测试",
+      "description": "Test Controller"
+    },
+    {
+      "name": "生产线",
+      "description": "Project Line Controller"
+    },
+    {
+      "name": "设备型号",
+      "description": "Equipment Model Controller"
+    },
+    {
+      "name": "设备管理",
+      "description": "Equipment Controller"
+    },
+    {
+      "name": "设备类型",
+      "description": "Equipment Type Controller"
+    },
+    {
+      "name": "设备采集数据",
+      "description": "Equipment Collect Data Controller"
+    },
+    {
+      "name": "设备采集数据配置",
+      "description": "Equipment Protocol Template Controller"
+    },
+    {
+      "name": "项目管理",
+      "description": "Project Controller"
+    }
+  ],
+  "paths": {
+    "/bigScreen/getCount": {
+      "get": {
+        "tags": [
+          "大屏首页"
+        ],
+        "summary": "获取数据统计",
+        "operationId": "getContUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BigScreenVO",
+              "originalRef": "BigScreenVO"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/constants/enums": {
+      "get": {
+        "tags": [
+          "全局常量"
+        ],
+        "summary": "查询全部枚举常量",
+        "operationId": "getEnumsUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EnumGroupVO",
+                "originalRef": "EnumGroupVO"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/equipment": {
+      "get": {
+        "tags": [
+          "设备管理"
+        ],
+        "summary": "分页查询",
+        "operationId": "listUsingGET_2",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "asc",
+            "in": "query",
+            "description": "是否升序",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "description": "设备编号",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "createTime",
+            "in": "query",
+            "description": "创建时间",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "creator",
+            "in": "query",
+            "description": "创建人",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "current",
+            "in": "query",
+            "description": "当前页码，默认1，-1为查询全部",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "主键ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "ip",
+            "in": "query",
+            "description": "IP",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "lastModifyTime",
+            "in": "query",
+            "description": "最后修改时间",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "modelConfigId",
+            "in": "query",
+            "description": "模型配置id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "modelId",
+            "in": "query",
+            "description": "设备型号名称",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "设备名称",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "online",
+            "in": "query",
+            "description": "是否在线",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "description": "排序字段",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pages",
+            "in": "query",
+            "description": "总页数",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "port",
+            "in": "query",
+            "description": "端口",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "projectId",
+            "in": "query",
+            "description": "所属项目",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "protocol",
+            "in": "query",
+            "description": "数据协议",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "MODBUS_TCP",
+              "SIEMENS_S7"
+            ]
+          },
+          {
+            "name": "remark",
+            "in": "query",
+            "description": "备注",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "每页数量，默认20",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "状态",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "ENABLE",
+              "DISABLE"
+            ]
+          },
+          {
+            "name": "total",
+            "in": "query",
+            "description": "数据总量",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "typeId",
+            "in": "query",
+            "description": "设备类型",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/PageResult«TEquipmentEntity对象»",
+              "originalRef": "PageResult«TEquipmentEntity对象»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "设备管理"
+        ],
+        "summary": "添加",
+        "operationId": "addUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "description": "data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TEquipmentEntity对象",
+              "originalRef": "TEquipmentEntity对象"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TEquipmentEntity对象",
+              "originalRef": "TEquipmentEntity对象"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/equipment/deleteWarning/{id}": {
+      "delete": {
+        "tags": [
+          "设备管理"
+        ],
+        "summary": "删除设备报警配置",
+        "operationId": "deleteWarningUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/equipment/getWarning/{id}": {
+      "get": {
+        "tags": [
+          "设备管理"
+        ],
+        "summary": "查询设备报警",
+        "operationId": "getWarningUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EquipmentWarningEntity",
+                "originalRef": "EquipmentWarningEntity"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/equipment/isEnable/{id}/{status}": {
+      "put": {
+        "tags": [
+          "设备管理"
+        ],
+        "summary": "设备启用/禁用",
+        "operationId": "isEnableUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "path",
+            "description": "status",
+            "required": true,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/equipment/listByProject/{projectId}": {
+      "get": {
+        "tags": [
+          "设备管理"
+        ],
+        "summary": "设备列表",
+        "operationId": "listUsingGET_3",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "asc",
+            "in": "query",
+            "description": "是否升序",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "current",
+            "in": "query",
+            "description": "当前页码，默认1，-1为查询全部",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "description": "排序字段",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pages",
+            "in": "query",
+            "description": "总页数",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "每页数量，默认20",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "total",
+            "in": "query",
+            "description": "数据总量",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/PageResult«TEquipmentEntity对象»",
+              "originalRef": "PageResult«TEquipmentEntity对象»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/equipment/saveWarning": {
+      "post": {
+        "tags": [
+          "设备管理"
+        ],
+        "summary": "保存/更新 设备报警配置",
+        "operationId": "saveModelWarningUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "e",
+            "description": "e",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EquipmentWarningEntity",
+              "originalRef": "EquipmentWarningEntity"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/equipment/{id}": {
+      "get": {
+        "tags": [
+          "设备管理"
+        ],
+        "summary": "指定ID获取数据",
+        "operationId": "getUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TEquipmentEntity对象",
+              "originalRef": "TEquipmentEntity对象"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "设备管理"
+        ],
+        "summary": "更新",
+        "operationId": "updateUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "description": "data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TEquipmentEntity对象",
+              "originalRef": "TEquipmentEntity对象"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TEquipmentEntity对象",
+              "originalRef": "TEquipmentEntity对象"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "设备管理"
+        ],
+        "summary": "指定ID删除",
+        "operationId": "deleteUsingDELETE_1",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/equipmentModel": {
+      "get": {
+        "tags": [
+          "设备型号"
+        ],
+        "summary": "分页查询",
+        "operationId": "listUsingGET_4",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "asc",
+            "in": "query",
+            "description": "是否升序",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "createTime",
+            "in": "query",
+            "description": "创建时间",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "creator",
+            "in": "query",
+            "description": "创建人",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "current",
+            "in": "query",
+            "description": "当前页码，默认1，-1为查询全部",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "主键ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "lastModifyTime",
+            "in": "query",
+            "description": "最后修改时间",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "型号名称",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "description": "排序字段",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pages",
+            "in": "query",
+            "description": "总页数",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "每页数量，默认20",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "total",
+            "in": "query",
+            "description": "数据总量",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "设备类型",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/PageResult«TEquipmentModelEntity对象»",
+              "originalRef": "PageResult«TEquipmentModelEntity对象»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "设备型号"
+        ],
+        "summary": "添加",
+        "operationId": "addUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "description": "data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TEquipmentModelEntity对象",
+              "originalRef": "TEquipmentModelEntity对象"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TEquipmentModelEntity对象",
+              "originalRef": "TEquipmentModelEntity对象"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/equipmentModel/{id}": {
+      "get": {
+        "tags": [
+          "设备型号"
+        ],
+        "summary": "指定ID获取数据",
+        "operationId": "getUsingGET_1",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TEquipmentModelEntity对象",
+              "originalRef": "TEquipmentModelEntity对象"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "设备型号"
+        ],
+        "summary": "更新",
+        "operationId": "updateUsingPUT_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "description": "data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TEquipmentModelEntity对象",
+              "originalRef": "TEquipmentModelEntity对象"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TEquipmentModelEntity对象",
+              "originalRef": "TEquipmentModelEntity对象"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "设备型号"
+        ],
+        "summary": "指定ID删除",
+        "operationId": "deleteUsingDELETE_2",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/equipmentProtocol": {
+      "get": {
+        "tags": [
+          "设备采集数据配置"
+        ],
+        "summary": "分页查询",
+        "operationId": "listUsingGET_5",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "asc",
+            "in": "query",
+            "description": "是否升序",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "createTime",
+            "in": "query",
+            "description": "创建时间",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "creator",
+            "in": "query",
+            "description": "创建人",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "current",
+            "in": "query",
+            "description": "当前页码，默认1，-1为查询全部",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "dataActiveTime",
+            "in": "query",
+            "description": "数据有效时长",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "dataBitLength",
+            "in": "query",
+            "description": "数据位长度",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "dataBitOffset",
+            "in": "query",
+            "description": "数据位偏移量",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "dataCollectFrequency",
+            "in": "query",
+            "description": "采集频率",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "dataHistory",
+            "in": "query",
+            "description": "历史",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "dataKey",
+            "in": "query",
+            "description": "数据KEY",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "dataLocalType",
+            "in": "query",
+            "description": "数据本地类型，DataLocalTypeEnum",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "STRING",
+              "INTEGER",
+              "DOUBLE",
+              "FLOAT",
+              "BOOLEAN",
+              "BYTE"
+            ]
+          },
+          {
+            "name": "dataName",
+            "in": "query",
+            "description": "数据名称",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "dataNativeType",
+            "in": "query",
+            "description": "数据原生类型，DataNativeTypeEnum",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "INT",
+              "REAL",
+              "BOOL",
+              "SINT"
+            ]
+          },
+          {
+            "name": "dataRatio",
+            "in": "query",
+            "description": "数据比例，默认1",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "dataUnit",
+            "in": "query",
+            "description": "单位",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "equipmentId",
+            "in": "query",
+            "description": "设备ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "主键ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "lastModifyTime",
+            "in": "query",
+            "description": "最后修改时间",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "modelConfigId",
+            "in": "query",
+            "description": "模型配置id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "modelProtocolDataType",
+            "in": "query",
+            "description": "数据类型 比如定义 温度 模拟量 状态量",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "WEN_DU",
+              "MO_NI_LIANG",
+              "ZHUANG_TAI_LIANG"
+            ]
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "description": "排序字段",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pages",
+            "in": "query",
+            "description": "总页数",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "protocol",
+            "in": "query",
+            "description": "数据协议，ProtocolEnum",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "MODBUS_TCP",
+              "SIEMENS_S7"
+            ]
+          },
+          {
+            "name": "registerId",
+            "in": "query",
+            "description": "寄存器id",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "registerTypeEnum",
+            "in": "query",
+            "description": "寄存器类型，RegisterTypeEnum",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "MODBUS_TCP_READ_COILS",
+              "MODBUS_TCP_DISCRETE_INPUTS",
+              "MODBUS_TCP_HOLDING_REGISTERS",
+              "MODBUS_TCP_READ_INPUT_REGISTERS",
+              "SIEMENS_S7_DB"
+            ]
+          },
+          {
+            "name": "relevancyDataId",
+            "in": "query",
+            "description": "关联数据id t_model_protocol_template的id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "relevancyStatus",
+            "in": "query",
+            "description": "关联数据状态",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "DA_YU",
+              "DENG_YU",
+              "XIAO_YU",
+              "DA_YU_DENG_YU",
+              "XIAO_YU_DENG_YU",
+              "BU_DENG_YU"
+            ]
+          },
+          {
+            "name": "relevancyValue",
+            "in": "query",
+            "description": "关联数值",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "remark",
+            "in": "query",
+            "description": "备注",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "每页数量，默认20",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "total",
+            "in": "query",
+            "description": "数据总量",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/PageResult«TEquipmentProtocolTemplateEntity对象»",
+              "originalRef": "PageResult«TEquipmentProtocolTemplateEntity对象»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "设备采集数据配置"
+        ],
+        "summary": "添加",
+        "operationId": "addUsingPOST_2",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "description": "data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TEquipmentProtocolTemplateEntity对象",
+              "originalRef": "TEquipmentProtocolTemplateEntity对象"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TEquipmentProtocolTemplateEntity对象",
+              "originalRef": "TEquipmentProtocolTemplateEntity对象"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/equipmentProtocol/{equipmentId}": {
+      "get": {
+        "tags": [
+          "设备采集数据配置"
+        ],
+        "summary": "设备数据配置查询",
+        "operationId": "getEquipmentProtocolTemplateVOUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "equipmentId",
+            "in": "path",
+            "description": "equipmentId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TEquipmentProtocolTemplateEntity对象",
+                "originalRef": "TEquipmentProtocolTemplateEntity对象"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/equipmentProtocol/{equipmentId}/updateEquipmentProtocol": {
+      "post": {
+        "tags": [
+          "设备采集数据配置"
+        ],
+        "summary": "设备模板修改",
+        "operationId": "updateEquipmentProtocolUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "createTime",
+            "in": "query",
+            "description": "创建时间",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "creator",
+            "in": "query",
+            "description": "创建人",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "dataActiveTime",
+            "in": "query",
+            "description": "数据有效时长",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "dataBitLength",
+            "in": "query",
+            "description": "数据位长度",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "dataBitOffset",
+            "in": "query",
+            "description": "数据位偏移量",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "dataCollectFrequency",
+            "in": "query",
+            "description": "采集频率",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "dataHistory",
+            "in": "query",
+            "description": "历史",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "dataKey",
+            "in": "query",
+            "description": "数据KEY",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "dataLocalType",
+            "in": "query",
+            "description": "数据本地类型，DataLocalTypeEnum",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "STRING",
+              "INTEGER",
+              "DOUBLE",
+              "FLOAT",
+              "BOOLEAN",
+              "BYTE"
+            ]
+          },
+          {
+            "name": "dataName",
+            "in": "query",
+            "description": "数据名称",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "dataNativeType",
+            "in": "query",
+            "description": "数据原生类型，DataNativeTypeEnum",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "INT",
+              "REAL",
+              "BOOL",
+              "SINT"
+            ]
+          },
+          {
+            "name": "dataRatio",
+            "in": "query",
+            "description": "数据比例，默认1",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "dataUnit",
+            "in": "query",
+            "description": "单位",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "equipmentId",
+            "in": "query",
+            "description": "设备ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "主键ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "lastModifyTime",
+            "in": "query",
+            "description": "最后修改时间",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "modelConfigId",
+            "in": "query",
+            "description": "模型配置id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "modelProtocolDataType",
+            "in": "query",
+            "description": "数据类型 比如定义 温度 模拟量 状态量",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "WEN_DU",
+              "MO_NI_LIANG",
+              "ZHUANG_TAI_LIANG"
+            ]
+          },
+          {
+            "name": "protocol",
+            "in": "query",
+            "description": "数据协议，ProtocolEnum",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "MODBUS_TCP",
+              "SIEMENS_S7"
+            ]
+          },
+          {
+            "name": "registerId",
+            "in": "query",
+            "description": "寄存器id",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "registerTypeEnum",
+            "in": "query",
+            "description": "寄存器类型，RegisterTypeEnum",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "MODBUS_TCP_READ_COILS",
+              "MODBUS_TCP_DISCRETE_INPUTS",
+              "MODBUS_TCP_HOLDING_REGISTERS",
+              "MODBUS_TCP_READ_INPUT_REGISTERS",
+              "SIEMENS_S7_DB"
+            ]
+          },
+          {
+            "name": "relevancyDataId",
+            "in": "query",
+            "description": "关联数据id t_model_protocol_template的id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "relevancyStatus",
+            "in": "query",
+            "description": "关联数据状态",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "DA_YU",
+              "DENG_YU",
+              "XIAO_YU",
+              "DA_YU_DENG_YU",
+              "XIAO_YU_DENG_YU",
+              "BU_DENG_YU"
+            ]
+          },
+          {
+            "name": "relevancyValue",
+            "in": "query",
+            "description": "关联数值",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "remark",
+            "in": "query",
+            "description": "备注",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "equipmentId",
+            "in": "path",
+            "description": "equipmentId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/equipmentProtocol/{id}": {
+      "get": {
+        "tags": [
+          "设备采集数据配置"
+        ],
+        "summary": "指定ID获取数据",
+        "operationId": "getUsingGET_2",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TEquipmentProtocolTemplateEntity对象",
+              "originalRef": "TEquipmentProtocolTemplateEntity对象"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "设备采集数据配置"
+        ],
+        "summary": "更新",
+        "operationId": "updateUsingPUT_2",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "description": "data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TEquipmentProtocolTemplateEntity对象",
+              "originalRef": "TEquipmentProtocolTemplateEntity对象"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TEquipmentProtocolTemplateEntity对象",
+              "originalRef": "TEquipmentProtocolTemplateEntity对象"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "设备采集数据配置"
+        ],
+        "summary": "指定ID删除",
+        "operationId": "deleteUsingDELETE_3",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/equipmentType": {
+      "get": {
+        "tags": [
+          "设备类型"
+        ],
+        "summary": "分页查询",
+        "operationId": "listUsingGET_6",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "asc",
+            "in": "query",
+            "description": "是否升序",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "createTime",
+            "in": "query",
+            "description": "创建时间",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "creator",
+            "in": "query",
+            "description": "创建人",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "current",
+            "in": "query",
+            "description": "当前页码，默认1，-1为查询全部",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "主键ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "lastModifyTime",
+            "in": "query",
+            "description": "最后修改时间",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "类型名称",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "description": "排序字段",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pages",
+            "in": "query",
+            "description": "总页数",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "每页数量，默认20",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "total",
+            "in": "query",
+            "description": "数据总量",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/PageResult«TEquipmentTypeEntity对象»",
+              "originalRef": "PageResult«TEquipmentTypeEntity对象»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "设备类型"
+        ],
+        "summary": "添加",
+        "operationId": "addUsingPOST_3",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "description": "data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TEquipmentTypeEntity对象",
+              "originalRef": "TEquipmentTypeEntity对象"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TEquipmentTypeEntity对象",
+              "originalRef": "TEquipmentTypeEntity对象"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/equipmentType/{id}": {
+      "get": {
+        "tags": [
+          "设备类型"
+        ],
+        "summary": "指定ID获取数据",
+        "operationId": "getUsingGET_3",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TEquipmentTypeEntity对象",
+              "originalRef": "TEquipmentTypeEntity对象"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "设备类型"
+        ],
+        "summary": "更新",
+        "operationId": "updateUsingPUT_3",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "description": "data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TEquipmentTypeEntity对象",
+              "originalRef": "TEquipmentTypeEntity对象"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TEquipmentTypeEntity对象",
+              "originalRef": "TEquipmentTypeEntity对象"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "设备类型"
+        ],
+        "summary": "指定ID删除",
+        "operationId": "deleteUsingDELETE_4",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/equipments/{equipmentId}/collectData": {
+      "get": {
+        "tags": [
+          "设备采集数据"
+        ],
+        "summary": "分页查询",
+        "operationId": "listUsingGET_1",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "asc",
+            "in": "query",
+            "description": "是否升序",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "createTime",
+            "in": "query",
+            "description": "创建时间",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "current",
+            "in": "query",
+            "description": "当前页码，默认1，-1为查询全部",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "主键ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "description": "排序字段",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pages",
+            "in": "query",
+            "description": "总页数",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "每页数量，默认20",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "total",
+            "in": "query",
+            "description": "数据总量",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "fieldList[0].javaType",
+            "in": "query",
+            "required": false,
+            "type": "ref"
+          },
+          {
+            "name": "fieldList[0].jdbcType",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "ARRAY",
+              "BIT",
+              "TINYINT",
+              "SMALLINT",
+              "INTEGER",
+              "BIGINT",
+              "FLOAT",
+              "REAL",
+              "DOUBLE",
+              "NUMERIC",
+              "DECIMAL",
+              "CHAR",
+              "VARCHAR",
+              "LONGVARCHAR",
+              "DATE",
+              "TIME",
+              "TIMESTAMP",
+              "BINARY",
+              "VARBINARY",
+              "LONGVARBINARY",
+              "NULL",
+              "OTHER",
+              "BLOB",
+              "CLOB",
+              "BOOLEAN",
+              "CURSOR",
+              "UNDEFINED",
+              "NVARCHAR",
+              "NCHAR",
+              "NCLOB",
+              "STRUCT",
+              "JAVA_OBJECT",
+              "DISTINCT",
+              "REF",
+              "DATALINK",
+              "ROWID",
+              "LONGNVARCHAR",
+              "SQLXML",
+              "DATETIMEOFFSET",
+              "TIME_WITH_TIMEZONE",
+              "TIMESTAMP_WITH_TIMEZONE"
+            ]
+          },
+          {
+            "name": "fieldList[0].key",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fieldList[0].name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fieldList[0].value",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "equipmentId",
+            "in": "path",
+            "description": "equipmentId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/PageResult«EquipmentCollectDataEntity»",
+              "originalRef": "PageResult«EquipmentCollectDataEntity»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/equipments/{equipmentId}/collectData/latest": {
+      "get": {
+        "tags": [
+          "设备采集数据"
+        ],
+        "summary": "设备采集最新数据",
+        "operationId": "listUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "equipmentId",
+            "in": "path",
+            "description": "equipmentId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/EquipmentCollectDataEntity",
+              "originalRef": "EquipmentCollectDataEntity"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/equipments/{equipmentId}/collectData/{id}": {
+      "delete": {
+        "tags": [
+          "设备采集数据"
+        ],
+        "summary": "删除指定ID数据",
+        "operationId": "deleteUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "equipmentId",
+            "in": "path",
+            "description": "equipmentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/fileUpload/showPicture/{pictureName}": {
+      "get": {
+        "tags": [
+          "文件上传"
+        ],
+        "summary": "图片预览",
+        "operationId": "downFileUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "pictureName",
+            "in": "path",
+            "description": "pictureName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result",
+              "originalRef": "Result"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/fileUpload/uploadImg": {
+      "post": {
+        "tags": [
+          "文件上传"
+        ],
+        "summary": "单张图片上传",
+        "operationId": "uploadImgUsingPOST",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "file",
+            "in": "formData",
+            "description": "file",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«PicUploadResultEntity»",
+              "originalRef": "Result«PicUploadResultEntity»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/fileUpload/uploadManyImg": {
+      "post": {
+        "tags": [
+          "文件上传"
+        ],
+        "summary": "多张图片上传",
+        "operationId": "uploadManyImgUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "files",
+            "in": "formData",
+            "description": "files",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "file"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Result«PicUploadResultEntity»",
+              "originalRef": "Result«PicUploadResultEntity»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/modelDataConfig/copyModel/{id}": {
+      "post": {
+        "tags": [
+          "模型数据配置"
+        ],
+        "summary": "复制模型",
+        "operationId": "copyModelUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "newNameVO",
+            "description": "newNameVO",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NewNameVO",
+              "originalRef": "NewNameVO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/modelDataConfig/deleteModelBasic/{id}": {
+      "delete": {
+        "tags": [
+          "模型数据配置"
+        ],
+        "summary": "删除模型基本信息",
+        "operationId": "deleteModelBasicUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/modelDataConfig/deleteModelProtocolTemplate/{id}": {
+      "delete": {
+        "tags": [
+          "模型数据配置"
+        ],
+        "summary": "删除模型数据配置",
+        "operationId": "deleteModelProtocolTemplateUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/modelDataConfig/deleteModelWarning/{id}": {
+      "delete": {
+        "tags": [
+          "模型数据配置"
+        ],
+        "summary": "删除设备报警配置",
+        "operationId": "deleteModelWarningUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/modelDataConfig/getConfigListByModeId/{modelId}": {
+      "get": {
+        "tags": [
+          "模型数据配置"
+        ],
+        "summary": "根据型号查询模型配置列表",
+        "operationId": "getConfigListByModeIdUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "modelId",
+            "in": "path",
+            "description": "modelId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ModelConfigEntity",
+                "originalRef": "ModelConfigEntity"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/modelDataConfig/getListModelBasic": {
+      "get": {
+        "tags": [
+          "模型数据配置"
+        ],
+        "summary": "获取模型列表",
+        "operationId": "getListModelBasicUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "asc",
+            "in": "query",
+            "description": "是否升序",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "createTime",
+            "in": "query",
+            "description": "创建时间",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "creator",
+            "in": "query",
+            "description": "创建人",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "current",
+            "in": "query",
+            "description": "当前页码，默认1，-1为查询全部",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "dataShow",
+            "in": "query",
+            "description": "设备数据信息展示",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "equipmentModel",
+            "in": "query",
+            "description": "设备型号",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "equipmentType",
+            "in": "query",
+            "description": "设备类型",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "historyShow",
+            "in": "query",
+            "description": "历史曲线展示",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "主键ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "lastModifyTime",
+            "in": "query",
+            "description": "最后修改时间",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "modelJson",
+            "in": "query",
+            "description": "数据保留区",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "模型名称",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "description": "排序字段",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pages",
+            "in": "query",
+            "description": "总页数",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "picture",
+            "in": "query",
+            "description": "设备图片",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pictureShow",
+            "in": "query",
+            "description": "图片展示",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "projectId",
+            "in": "query",
+            "description": "项目id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "protocol",
+            "in": "query",
+            "description": "数据协议，ProtocolEnum",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "MODBUS_TCP",
+              "SIEMENS_S7"
+            ]
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "每页数量，默认20",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "total",
+            "in": "query",
+            "description": "数据总量",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "warningShow",
+            "in": "query",
+            "description": "报警列表展示",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/PageResult«ModelConfigEntity»",
+              "originalRef": "PageResult«ModelConfigEntity»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/modelDataConfig/getListModelProtocolTemplate/{modelConfigId}": {
+      "get": {
+        "tags": [
+          "模型数据配置"
+        ],
+        "summary": "获取模型数据配置列表",
+        "operationId": "getListModelProtocolTemplateUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "modelConfigId",
+            "in": "path",
+            "description": "modelConfigId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TModelProtocolTemplateEntity对象",
+                "originalRef": "TModelProtocolTemplateEntity对象"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/modelDataConfig/getListModelWarning/{modelConfigId}": {
+      "get": {
+        "tags": [
+          "模型数据配置"
+        ],
+        "summary": "获取设备报警配置列表",
+        "operationId": "getListModelWarningUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "modelConfigId",
+            "in": "path",
+            "description": "modelConfigId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ModelWarningEntity",
+                "originalRef": "ModelWarningEntity"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/modelDataConfig/getModelCurveHistory/{modelConfigId}": {
+      "get": {
+        "tags": [
+          "模型数据配置"
+        ],
+        "summary": "查询历史曲线图",
+        "operationId": "getModelCurveHistoryUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "modelConfigId",
+            "in": "path",
+            "description": "modelConfigId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TModelCurveHistoryEntity对象",
+                "originalRef": "TModelCurveHistoryEntity对象"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/modelDataConfig/getModelData/{modelConfigId}": {
+      "get": {
+        "tags": [
+          "模型数据配置"
+        ],
+        "summary": "查询设备显示信息",
+        "operationId": "getModelDataUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "modelConfigId",
+            "in": "path",
+            "description": "modelConfigId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ModelDataVO",
+              "originalRef": "ModelDataVO"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/modelDataConfig/getOneModelBasic/{id}": {
+      "get": {
+        "tags": [
+          "模型数据配置"
+        ],
+        "summary": "获取单个模型基本信息",
+        "operationId": "getModelBasicUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ModelConfigEntity",
+              "originalRef": "ModelConfigEntity"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/modelDataConfig/removeOneModelCurveHistory/{id}": {
+      "delete": {
+        "tags": [
+          "模型数据配置"
+        ],
+        "summary": "删除一条历史曲线图",
+        "operationId": "removeOneModelCurveHistoryUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/modelDataConfig/removeOneModelData/{id}": {
+      "delete": {
+        "tags": [
+          "模型数据配置"
+        ],
+        "summary": "删除一条设备显示信息",
+        "operationId": "removeOneModelDataUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/modelDataConfig/saveModelBasic": {
+      "post": {
+        "tags": [
+          "模型数据配置"
+        ],
+        "summary": "保存/更新模型基本信息",
+        "operationId": "saveModelBasicUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "e",
+            "description": "e",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ModelConfigEntity",
+              "originalRef": "ModelConfigEntity"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/modelDataConfig/saveModelCurveHistory": {
+      "post": {
+        "tags": [
+          "模型数据配置"
+        ],
+        "summary": "保存/更新历史曲线图",
+        "operationId": "saveModelCurveHistoryUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "description": "data",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TModelCurveHistoryEntity对象",
+                "originalRef": "TModelCurveHistoryEntity对象"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/modelDataConfig/saveModelData": {
+      "post": {
+        "tags": [
+          "模型数据配置"
+        ],
+        "summary": "保存/更新设备显示信息",
+        "operationId": "saveModelDataUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "modelDataVO",
+            "description": "modelDataVO",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ModelDataVO",
+              "originalRef": "ModelDataVO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/modelDataConfig/saveModelProtocolTemplate": {
+      "post": {
+        "tags": [
+          "模型数据配置"
+        ],
+        "summary": "保存模型数据配置",
+        "operationId": "saveModelProtocolTemplateUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "e",
+            "description": "e",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TModelProtocolTemplateEntity对象",
+              "originalRef": "TModelProtocolTemplateEntity对象"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/modelDataConfig/saveModelWarning": {
+      "post": {
+        "tags": [
+          "模型数据配置"
+        ],
+        "summary": "保存设备报警配置",
+        "operationId": "saveModelWarningUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "e",
+            "description": "e",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ModelWarningEntity",
+              "originalRef": "ModelWarningEntity"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/modelDataConfig/saveModelWarningShow": {
+      "post": {
+        "tags": [
+          "模型数据配置"
+        ],
+        "summary": "保存设备报警配置显示信息",
+        "operationId": "saveModelWarningShowUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "e",
+            "description": "e",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ModelWaringVO",
+              "originalRef": "ModelWaringVO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/projectLine": {
+      "get": {
+        "tags": [
+          "生产线"
+        ],
+        "summary": "分页查询",
+        "operationId": "listUsingGET_8",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "asc",
+            "in": "query",
+            "description": "是否升序",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "createTime",
+            "in": "query",
+            "description": "创建时间",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "creator",
+            "in": "query",
+            "description": "创建人",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "current",
+            "in": "query",
+            "description": "当前页码，默认1，-1为查询全部",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "主键ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "lastModifyTime",
+            "in": "query",
+            "description": "最后修改时间",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "linePicture",
+            "in": "query",
+            "description": "生产线图片",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "description": "排序字段",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pages",
+            "in": "query",
+            "description": "总页数",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "remark",
+            "in": "query",
+            "description": "备注",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "每页数量，默认20",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "状态",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "total",
+            "in": "query",
+            "description": "数据总量",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "TProjectId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/PageResult«TProjectLineEntity对象»",
+              "originalRef": "PageResult«TProjectLineEntity对象»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "生产线"
+        ],
+        "summary": "添加",
+        "operationId": "addUsingPOST_5",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "description": "data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TProjectLineEntity对象",
+              "originalRef": "TProjectLineEntity对象"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TProjectLineEntity对象",
+              "originalRef": "TProjectLineEntity对象"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/projectLine/{id}": {
+      "get": {
+        "tags": [
+          "生产线"
+        ],
+        "summary": "指定ID获取数据",
+        "operationId": "getUsingGET_5",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TProjectLineEntity对象",
+              "originalRef": "TProjectLineEntity对象"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "生产线"
+        ],
+        "summary": "更新",
+        "operationId": "updateUsingPUT_5",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "description": "data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TProjectLineEntity对象",
+              "originalRef": "TProjectLineEntity对象"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TProjectLineEntity对象",
+              "originalRef": "TProjectLineEntity对象"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "生产线"
+        ],
+        "summary": "指定ID删除",
+        "operationId": "deleteUsingDELETE_6",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/projects": {
+      "get": {
+        "tags": [
+          "项目管理"
+        ],
+        "summary": "分页查询",
+        "operationId": "listUsingGET_7",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "area",
+            "in": "query",
+            "description": "区/县",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "asc",
+            "in": "query",
+            "description": "是否升序",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "description": "市",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "description": "项目编号",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "createTime",
+            "in": "query",
+            "description": "创建时间",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "creator",
+            "in": "query",
+            "description": "创建人",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "current",
+            "in": "query",
+            "description": "当前页码，默认1，-1为查询全部",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "dataShow",
+            "in": "query",
+            "description": "设备数据展示",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "equipmentNums",
+            "in": "query",
+            "description": "设备数量",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "groupShow",
+            "in": "query",
+            "description": "数据组展示",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "主键ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "introduce",
+            "in": "query",
+            "description": "项目介绍",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "introduceShow",
+            "in": "query",
+            "description": "介绍展示",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "lastModifyTime",
+            "in": "query",
+            "description": "最后修改时间",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "latitude",
+            "in": "query",
+            "description": "纬度",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "lineShow",
+            "in": "query",
+            "description": "生产线展示",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "longitude",
+            "in": "query",
+            "description": "经度",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "项目名称",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "description": "排序字段",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pages",
+            "in": "query",
+            "description": "总页数",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "pictureShow",
+            "in": "query",
+            "description": "项目效果图 显示",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "province",
+            "in": "query",
+            "description": "省",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "remark",
+            "in": "query",
+            "description": "备注",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "每页数量，默认20",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "状态",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "NORMAL",
+              "FORBIDDEN"
+            ]
+          },
+          {
+            "name": "total",
+            "in": "query",
+            "description": "数据总量",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/PageResult«ProjectEntity对象»",
+              "originalRef": "PageResult«ProjectEntity对象»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "项目管理"
+        ],
+        "summary": "添加",
+        "operationId": "addUsingPOST_4",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "description": "data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProjectEntity对象",
+              "originalRef": "ProjectEntity对象"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ProjectEntity对象",
+              "originalRef": "ProjectEntity对象"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/projects/deleteProjectDataGroup/{id}": {
+      "delete": {
+        "tags": [
+          "项目管理"
+        ],
+        "summary": "删除数据组信息",
+        "operationId": "deleteProjectDataGroupUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/projects/deleteProjectDataProtocol/{id}": {
+      "delete": {
+        "tags": [
+          "项目管理"
+        ],
+        "summary": "删除数据组信息",
+        "operationId": "deleteProjectProtocolUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/projects/getProjectDataGroup/{projectId}": {
+      "get": {
+        "tags": [
+          "项目管理"
+        ],
+        "summary": "获取数据组信息",
+        "operationId": "getProjectDataGroupUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TProjectDataGroupEntity对象",
+              "originalRef": "TProjectDataGroupEntity对象"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/projects/getProjectDataProtocol/{projectDataGroupId}": {
+      "get": {
+        "tags": [
+          "项目管理"
+        ],
+        "summary": "获取数据组信息",
+        "operationId": "getProjectDataProtocolUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "projectDataGroupId",
+            "in": "path",
+            "description": "projectDataGroupId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TProjectProtocolEntity对象",
+                "originalRef": "TProjectProtocolEntity对象"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/projects/isEnable/{projectId}/{status}": {
+      "put": {
+        "tags": [
+          "项目管理"
+        ],
+        "summary": "启用/禁用项目",
+        "operationId": "forbiddenProjectUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "path",
+            "description": "status",
+            "required": true,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/projects/saveProjectDataGroup": {
+      "post": {
+        "tags": [
+          "项目管理"
+        ],
+        "summary": "保存/更新数据组信息",
+        "operationId": "saveProjectDataGroupUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "entity",
+            "description": "entity",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TProjectDataGroupEntity对象",
+              "originalRef": "TProjectDataGroupEntity对象"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/projects/saveProjectDataProtocol": {
+      "post": {
+        "tags": [
+          "项目管理"
+        ],
+        "summary": "保存/更新数据参数",
+        "operationId": "saveProjectDataProtocolUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "entity",
+            "description": "entity",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TProjectProtocolEntity对象",
+              "originalRef": "TProjectProtocolEntity对象"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/projects/{id}": {
+      "get": {
+        "tags": [
+          "项目管理"
+        ],
+        "summary": "指定ID获取数据",
+        "operationId": "getUsingGET_4",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ProjectEntity对象",
+              "originalRef": "ProjectEntity对象"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "项目管理"
+        ],
+        "summary": "更新",
+        "operationId": "updateUsingPUT_4",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "description": "data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProjectEntity对象",
+              "originalRef": "ProjectEntity对象"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ProjectEntity对象",
+              "originalRef": "ProjectEntity对象"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "项目管理"
+        ],
+        "summary": "指定ID删除",
+        "operationId": "deleteUsingDELETE_5",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/test/throw": {
+      "get": {
+        "tags": [
+          "测试"
+        ],
+        "summary": "test",
+        "operationId": "testUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "definitions": {
+    "BigScreenVO": {
+      "type": "object",
+      "properties": {
+        "equipmentNums": {
+          "type": "integer",
+          "format": "int32",
+          "description": "在线设备总数"
+        },
+        "onlineEquipmentNums": {
+          "type": "integer",
+          "format": "int32",
+          "description": "在线设备总数"
+        },
+        "projectNums": {
+          "type": "integer",
+          "format": "int32",
+          "description": "项目数量"
+        }
+      },
+      "title": "BigScreenVO"
+    },
+    "EntityField": {
+      "type": "object",
+      "properties": {
+        "jdbcType": {
+          "type": "string",
+          "enum": [
+            "ARRAY",
+            "BIT",
+            "TINYINT",
+            "SMALLINT",
+            "INTEGER",
+            "BIGINT",
+            "FLOAT",
+            "REAL",
+            "DOUBLE",
+            "NUMERIC",
+            "DECIMAL",
+            "CHAR",
+            "VARCHAR",
+            "LONGVARCHAR",
+            "DATE",
+            "TIME",
+            "TIMESTAMP",
+            "BINARY",
+            "VARBINARY",
+            "LONGVARBINARY",
+            "NULL",
+            "OTHER",
+            "BLOB",
+            "CLOB",
+            "BOOLEAN",
+            "CURSOR",
+            "UNDEFINED",
+            "NVARCHAR",
+            "NCHAR",
+            "NCLOB",
+            "STRUCT",
+            "JAVA_OBJECT",
+            "DISTINCT",
+            "REF",
+            "DATALINK",
+            "ROWID",
+            "LONGNVARCHAR",
+            "SQLXML",
+            "DATETIMEOFFSET",
+            "TIME_WITH_TIMEZONE",
+            "TIMESTAMP_WITH_TIMEZONE"
+          ]
+        },
+        "key": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "title": "EntityField"
+    },
+    "EnumGroupVO": {
+      "type": "object",
+      "properties": {
+        "group": {
+          "type": "string",
+          "description": "分组名"
+        },
+        "values": {
+          "type": "array",
+          "description": "分组列表",
+          "items": {
+            "$ref": "#/definitions/EnumValue",
+            "originalRef": "EnumValue"
+          }
+        }
+      },
+      "title": "EnumGroupVO"
+    },
+    "EnumValue": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "枚举名称"
+        },
+        "value": {
+          "type": "string",
+          "description": "枚举值"
+        }
+      },
+      "title": "EnumValue"
+    },
+    "EquipmentCollectDataEntity": {
+      "type": "object",
+      "properties": {
+        "createTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "创建时间"
+        },
+        "fieldList": {
+          "type": "array",
+          "description": "字段列表",
+          "items": {
+            "$ref": "#/definitions/EntityField",
+            "originalRef": "EntityField"
+          }
+        },
+        "id": {
+          "type": "string",
+          "description": "主键ID"
+        }
+      },
+      "title": "EquipmentCollectDataEntity"
+    },
+    "EquipmentWarningEntity": {
+      "type": "object",
+      "properties": {
+        "createTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "创建时间"
+        },
+        "creator": {
+          "type": "string",
+          "description": "创建人"
+        },
+        "equipmentId": {
+          "type": "string",
+          "description": "设备id"
+        },
+        "equipmentProtocolTemplateId": {
+          "type": "string",
+          "description": "数据参数id"
+        },
+        "history": {
+          "type": "boolean",
+          "description": "历史"
+        },
+        "id": {
+          "type": "string",
+          "description": "主键ID"
+        },
+        "isShow": {
+          "type": "boolean",
+          "description": "是否展示"
+        },
+        "lastModifyTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "最后修改时间"
+        },
+        "name": {
+          "type": "string",
+          "description": "报警名"
+        },
+        "relevancyStatus": {
+          "type": "string",
+          "description": "关联数据状态",
+          "enum": [
+            "DA_YU",
+            "DENG_YU",
+            "XIAO_YU",
+            "DA_YU_DENG_YU",
+            "XIAO_YU_DENG_YU",
+            "BU_DENG_YU"
+          ]
+        },
+        "relevancyValue": {
+          "type": "string",
+          "description": "关联数值"
+        },
+        "remark": {
+          "type": "string",
+          "description": "备注"
+        },
+        "type": {
+          "type": "string",
+          "description": "有效状态"
+        },
+        "warningText": {
+          "type": "string",
+          "description": "警报文本"
+        }
+      },
+      "title": "EquipmentWarningEntity"
+    },
+    "ModelConfigEntity": {
+      "type": "object",
+      "properties": {
+        "createTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "创建时间"
+        },
+        "creator": {
+          "type": "string",
+          "description": "创建人"
+        },
+        "dataShow": {
+          "type": "boolean",
+          "description": "设备数据信息展示"
+        },
+        "equipmentModel": {
+          "type": "string",
+          "description": "设备型号"
+        },
+        "equipmentType": {
+          "type": "string",
+          "description": "设备类型"
+        },
+        "historyShow": {
+          "type": "boolean",
+          "description": "历史曲线展示"
+        },
+        "id": {
+          "type": "string",
+          "description": "主键ID"
+        },
+        "lastModifyTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "最后修改时间"
+        },
+        "modelJson": {
+          "type": "string",
+          "description": "数据保留区"
+        },
+        "name": {
+          "type": "string",
+          "description": "模型名称"
+        },
+        "picture": {
+          "type": "string",
+          "description": "设备图片"
+        },
+        "pictureShow": {
+          "type": "boolean",
+          "description": "图片展示"
+        },
+        "projectId": {
+          "type": "string",
+          "description": "项目id"
+        },
+        "protocol": {
+          "type": "string",
+          "description": "数据协议，ProtocolEnum",
+          "enum": [
+            "MODBUS_TCP",
+            "SIEMENS_S7"
+          ]
+        },
+        "warningShow": {
+          "type": "boolean",
+          "description": "报警列表展示"
+        }
+      },
+      "title": "ModelConfigEntity"
+    },
+    "ModelDataVO": {
+      "type": "object",
+      "properties": {
+        "modelConfigId": {
+          "type": "string",
+          "description": "模型配置id"
+        },
+        "modelProtocolTemplateIdList": {
+          "type": "array",
+          "description": "参数id",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "ModelDataVO"
+    },
+    "ModelWaringVO": {
+      "type": "object",
+      "properties": {
+        "modelConfigId": {
+          "type": "string",
+          "description": "模型配置id"
+        },
+        "warningIdList": {
+          "type": "array",
+          "description": "参数id",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "ModelWaringVO"
+    },
+    "ModelWarningEntity": {
+      "type": "object",
+      "properties": {
+        "createTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "创建时间"
+        },
+        "creator": {
+          "type": "string",
+          "description": "创建人"
+        },
+        "history": {
+          "type": "boolean",
+          "description": "历史"
+        },
+        "id": {
+          "type": "string",
+          "description": "主键ID"
+        },
+        "isShow": {
+          "type": "boolean",
+          "description": "是否展示"
+        },
+        "lastModifyTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "最后修改时间"
+        },
+        "modelConfigId": {
+          "type": "string",
+          "description": "模型配置id"
+        },
+        "modelProtocolTemplateId": {
+          "type": "string",
+          "description": "数据参数id"
+        },
+        "name": {
+          "type": "string",
+          "description": "报警名"
+        },
+        "relevancyStatus": {
+          "type": "string",
+          "description": "关联数据状态",
+          "enum": [
+            "DA_YU",
+            "DENG_YU",
+            "XIAO_YU",
+            "DA_YU_DENG_YU",
+            "XIAO_YU_DENG_YU",
+            "BU_DENG_YU"
+          ]
+        },
+        "relevancyValue": {
+          "type": "string",
+          "description": "关联数值"
+        },
+        "remark": {
+          "type": "string",
+          "description": "备注"
+        },
+        "type": {
+          "type": "string",
+          "description": "有效状态"
+        },
+        "warningText": {
+          "type": "string",
+          "description": "警报文本"
+        }
+      },
+      "title": "ModelWarningEntity"
+    },
+    "NewNameVO": {
+      "type": "object",
+      "properties": {
+        "newName": {
+          "type": "string"
+        }
+      },
+      "title": "NewNameVO"
+    },
+    "PageResult«EquipmentCollectDataEntity»": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "description": "当前页码，默认1，-1为查询全部"
+        },
+        "list": {
+          "type": "array",
+          "description": "列表数据",
+          "items": {
+            "$ref": "#/definitions/EquipmentCollectDataEntity",
+            "originalRef": "EquipmentCollectDataEntity"
+          }
+        },
+        "pages": {
+          "type": "integer",
+          "format": "int64",
+          "description": "总页数"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "每页数量，默认20"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64",
+          "description": "数据总量"
+        }
+      },
+      "title": "PageResult«EquipmentCollectDataEntity»"
+    },
+    "PageResult«ModelConfigEntity»": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "description": "当前页码，默认1，-1为查询全部"
+        },
+        "list": {
+          "type": "array",
+          "description": "列表数据",
+          "items": {
+            "$ref": "#/definitions/ModelConfigEntity",
+            "originalRef": "ModelConfigEntity"
+          }
+        },
+        "pages": {
+          "type": "integer",
+          "format": "int64",
+          "description": "总页数"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "每页数量，默认20"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64",
+          "description": "数据总量"
+        }
+      },
+      "title": "PageResult«ModelConfigEntity»"
+    },
+    "PageResult«ProjectEntity对象»": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "description": "当前页码，默认1，-1为查询全部"
+        },
+        "list": {
+          "type": "array",
+          "description": "列表数据",
+          "items": {
+            "$ref": "#/definitions/ProjectEntity对象",
+            "originalRef": "ProjectEntity对象"
+          }
+        },
+        "pages": {
+          "type": "integer",
+          "format": "int64",
+          "description": "总页数"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "每页数量，默认20"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64",
+          "description": "数据总量"
+        }
+      },
+      "title": "PageResult«ProjectEntity对象»"
+    },
+    "PageResult«TEquipmentEntity对象»": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "description": "当前页码，默认1，-1为查询全部"
+        },
+        "list": {
+          "type": "array",
+          "description": "列表数据",
+          "items": {
+            "$ref": "#/definitions/TEquipmentEntity对象",
+            "originalRef": "TEquipmentEntity对象"
+          }
+        },
+        "pages": {
+          "type": "integer",
+          "format": "int64",
+          "description": "总页数"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "每页数量，默认20"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64",
+          "description": "数据总量"
+        }
+      },
+      "title": "PageResult«TEquipmentEntity对象»"
+    },
+    "PageResult«TEquipmentModelEntity对象»": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "description": "当前页码，默认1，-1为查询全部"
+        },
+        "list": {
+          "type": "array",
+          "description": "列表数据",
+          "items": {
+            "$ref": "#/definitions/TEquipmentModelEntity对象",
+            "originalRef": "TEquipmentModelEntity对象"
+          }
+        },
+        "pages": {
+          "type": "integer",
+          "format": "int64",
+          "description": "总页数"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "每页数量，默认20"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64",
+          "description": "数据总量"
+        }
+      },
+      "title": "PageResult«TEquipmentModelEntity对象»"
+    },
+    "PageResult«TEquipmentProtocolTemplateEntity对象»": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "description": "当前页码，默认1，-1为查询全部"
+        },
+        "list": {
+          "type": "array",
+          "description": "列表数据",
+          "items": {
+            "$ref": "#/definitions/TEquipmentProtocolTemplateEntity对象",
+            "originalRef": "TEquipmentProtocolTemplateEntity对象"
+          }
+        },
+        "pages": {
+          "type": "integer",
+          "format": "int64",
+          "description": "总页数"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "每页数量，默认20"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64",
+          "description": "数据总量"
+        }
+      },
+      "title": "PageResult«TEquipmentProtocolTemplateEntity对象»"
+    },
+    "PageResult«TEquipmentTypeEntity对象»": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "description": "当前页码，默认1，-1为查询全部"
+        },
+        "list": {
+          "type": "array",
+          "description": "列表数据",
+          "items": {
+            "$ref": "#/definitions/TEquipmentTypeEntity对象",
+            "originalRef": "TEquipmentTypeEntity对象"
+          }
+        },
+        "pages": {
+          "type": "integer",
+          "format": "int64",
+          "description": "总页数"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "每页数量，默认20"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64",
+          "description": "数据总量"
+        }
+      },
+      "title": "PageResult«TEquipmentTypeEntity对象»"
+    },
+    "PageResult«TProjectLineEntity对象»": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "description": "当前页码，默认1，-1为查询全部"
+        },
+        "list": {
+          "type": "array",
+          "description": "列表数据",
+          "items": {
+            "$ref": "#/definitions/TProjectLineEntity对象",
+            "originalRef": "TProjectLineEntity对象"
+          }
+        },
+        "pages": {
+          "type": "integer",
+          "format": "int64",
+          "description": "总页数"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "每页数量，默认20"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64",
+          "description": "数据总量"
+        }
+      },
+      "title": "PageResult«TProjectLineEntity对象»"
+    },
+    "PicUploadResultEntity": {
+      "type": "object",
+      "properties": {
+        "imgPath": {
+          "type": "string",
+          "description": "图片路径",
+          "refType": null
+        },
+        "imgPaths": {
+          "type": "array",
+          "description": "图片路径集合",
+          "items": {
+            "type": "string"
+          },
+          "refType": "string"
+        },
+        "legal": {
+          "type": "boolean",
+          "refType": null
+        }
+      },
+      "title": "PicUploadResultEntity"
+    },
+    "ProjectEntity对象": {
+      "type": "object",
+      "properties": {
+        "area": {
+          "type": "string",
+          "description": "区/县",
+          "refType": null
+        },
+        "city": {
+          "type": "string",
+          "description": "市",
+          "refType": null
+        },
+        "code": {
+          "type": "string",
+          "description": "项目编号",
+          "refType": null
+        },
+        "createTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "创建时间",
+          "refType": null
+        },
+        "creator": {
+          "type": "string",
+          "description": "创建人",
+          "refType": null
+        },
+        "dataShow": {
+          "type": "boolean",
+          "description": "设备数据展示",
+          "refType": null
+        },
+        "equipmentNums": {
+          "type": "string",
+          "description": "设备数量",
+          "refType": null
+        },
+        "groupShow": {
+          "type": "boolean",
+          "description": "数据组展示",
+          "refType": null
+        },
+        "id": {
+          "type": "string",
+          "description": "主键ID",
+          "refType": null
+        },
+        "introduce": {
+          "type": "string",
+          "description": "项目介绍",
+          "refType": null
+        },
+        "introduceShow": {
+          "type": "boolean",
+          "description": "介绍展示",
+          "refType": null
+        },
+        "lastModifyTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "最后修改时间",
+          "refType": null
+        },
+        "latitude": {
+          "type": "string",
+          "description": "纬度",
+          "refType": null
+        },
+        "lineShow": {
+          "type": "boolean",
+          "description": "生产线展示",
+          "refType": null
+        },
+        "longitude": {
+          "type": "string",
+          "description": "经度",
+          "refType": null
+        },
+        "name": {
+          "type": "string",
+          "description": "项目名称",
+          "refType": null
+        },
+        "pictureShow": {
+          "type": "boolean",
+          "description": "项目效果图 显示",
+          "refType": null
+        },
+        "province": {
+          "type": "string",
+          "description": "省",
+          "refType": null
+        },
+        "remark": {
+          "type": "string",
+          "description": "备注",
+          "refType": null
+        },
+        "status": {
+          "type": "string",
+          "description": "状态",
+          "enum": [
+            "NORMAL",
+            "FORBIDDEN"
+          ],
+          "refType": null
+        }
+      },
+      "title": "ProjectEntity对象",
+      "description": "项目表"
+    },
+    "Result": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "响应码"
+        },
+        "data": {
+          "type": "object",
+          "description": "数据"
+        },
+        "message": {
+          "type": "string",
+          "description": "简要信息"
+        },
+        "success": {
+          "type": "boolean",
+          "description": "是否处理成功"
+        },
+        "time": {
+          "type": "integer",
+          "format": "int64",
+          "description": "响应时间"
+        }
+      },
+      "title": "Result",
+      "description": "统一响应数据格式"
+    },
+    "Result«PicUploadResultEntity»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "响应码"
+        },
+        "data": {
+          "description": "数据",
+          "$ref": "#/definitions/PicUploadResultEntity",
+          "originalRef": "PicUploadResultEntity"
+        },
+        "message": {
+          "type": "string",
+          "description": "简要信息"
+        },
+        "success": {
+          "type": "boolean",
+          "description": "是否处理成功"
+        },
+        "time": {
+          "type": "integer",
+          "format": "int64",
+          "description": "响应时间"
+        }
+      },
+      "title": "Result«PicUploadResultEntity»",
+      "description": "统一响应数据格式"
+    },
+    "TEquipmentEntity对象": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "设备编号"
+        },
+        "createTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "创建时间"
+        },
+        "creator": {
+          "type": "string",
+          "description": "创建人"
+        },
+        "id": {
+          "type": "string",
+          "description": "主键ID"
+        },
+        "ip": {
+          "type": "string",
+          "description": "IP"
+        },
+        "lastModifyTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "最后修改时间"
+        },
+        "modelConfigId": {
+          "type": "string",
+          "description": "模型配置id"
+        },
+        "modelId": {
+          "type": "string",
+          "description": "设备型号名称"
+        },
+        "name": {
+          "type": "string",
+          "description": "设备名称"
+        },
+        "online": {
+          "type": "boolean",
+          "description": "是否在线"
+        },
+        "port": {
+          "type": "integer",
+          "format": "int32",
+          "description": "端口"
+        },
+        "projectId": {
+          "type": "string",
+          "description": "所属项目"
+        },
+        "protocol": {
+          "type": "string",
+          "description": "数据协议",
+          "enum": [
+            "MODBUS_TCP",
+            "SIEMENS_S7"
+          ]
+        },
+        "remark": {
+          "type": "string",
+          "description": "备注"
+        },
+        "status": {
+          "type": "string",
+          "description": "状态",
+          "enum": [
+            "ENABLE",
+            "DISABLE"
+          ]
+        },
+        "typeId": {
+          "type": "string",
+          "description": "设备类型"
+        }
+      },
+      "title": "TEquipmentEntity对象"
+    },
+    "TEquipmentModelEntity对象": {
+      "type": "object",
+      "properties": {
+        "createTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "创建时间"
+        },
+        "creator": {
+          "type": "string",
+          "description": "创建人"
+        },
+        "id": {
+          "type": "string",
+          "description": "主键ID"
+        },
+        "lastModifyTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "最后修改时间"
+        },
+        "name": {
+          "type": "string",
+          "description": "型号名称"
+        },
+        "type": {
+          "type": "string",
+          "description": "设备类型"
+        }
+      },
+      "title": "TEquipmentModelEntity对象"
+    },
+    "TEquipmentProtocolTemplateEntity对象": {
+      "type": "object",
+      "properties": {
+        "createTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "创建时间"
+        },
+        "creator": {
+          "type": "string",
+          "description": "创建人"
+        },
+        "dataActiveTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "数据有效时长"
+        },
+        "dataBitLength": {
+          "type": "integer",
+          "format": "int32",
+          "description": "数据位长度"
+        },
+        "dataBitOffset": {
+          "type": "integer",
+          "format": "int32",
+          "description": "数据位偏移量"
+        },
+        "dataCollectFrequency": {
+          "type": "integer",
+          "format": "int64",
+          "description": "采集频率"
+        },
+        "dataHistory": {
+          "type": "boolean",
+          "description": "历史"
+        },
+        "dataKey": {
+          "type": "string",
+          "description": "数据KEY"
+        },
+        "dataLocalType": {
+          "type": "string",
+          "description": "数据本地类型，DataLocalTypeEnum",
+          "enum": [
+            "STRING",
+            "INTEGER",
+            "DOUBLE",
+            "FLOAT",
+            "BOOLEAN",
+            "BYTE"
+          ]
+        },
+        "dataName": {
+          "type": "string",
+          "description": "数据名称"
+        },
+        "dataNativeType": {
+          "type": "string",
+          "description": "数据原生类型，DataNativeTypeEnum",
+          "enum": [
+            "INT",
+            "REAL",
+            "BOOL",
+            "SINT"
+          ]
+        },
+        "dataRatio": {
+          "type": "integer",
+          "format": "int32",
+          "description": "数据比例，默认1"
+        },
+        "dataUnit": {
+          "type": "string",
+          "description": "单位"
+        },
+        "equipmentId": {
+          "type": "string",
+          "description": "设备ID"
+        },
+        "id": {
+          "type": "string",
+          "description": "主键ID"
+        },
+        "lastModifyTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "最后修改时间"
+        },
+        "modelConfigId": {
+          "type": "string",
+          "description": "模型配置id"
+        },
+        "modelProtocolDataType": {
+          "type": "string",
+          "description": "数据类型 比如定义 温度 模拟量 状态量",
+          "enum": [
+            "WEN_DU",
+            "MO_NI_LIANG",
+            "ZHUANG_TAI_LIANG"
+          ]
+        },
+        "protocol": {
+          "type": "string",
+          "description": "数据协议，ProtocolEnum",
+          "enum": [
+            "MODBUS_TCP",
+            "SIEMENS_S7"
+          ]
+        },
+        "registerId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "寄存器id"
+        },
+        "registerTypeEnum": {
+          "type": "string",
+          "description": "寄存器类型，RegisterTypeEnum",
+          "enum": [
+            "MODBUS_TCP_READ_COILS",
+            "MODBUS_TCP_DISCRETE_INPUTS",
+            "MODBUS_TCP_HOLDING_REGISTERS",
+            "MODBUS_TCP_READ_INPUT_REGISTERS",
+            "SIEMENS_S7_DB"
+          ]
+        },
+        "relevancyDataId": {
+          "type": "string",
+          "description": "关联数据id t_model_protocol_template的id"
+        },
+        "relevancyStatus": {
+          "type": "string",
+          "description": "关联数据状态",
+          "enum": [
+            "DA_YU",
+            "DENG_YU",
+            "XIAO_YU",
+            "DA_YU_DENG_YU",
+            "XIAO_YU_DENG_YU",
+            "BU_DENG_YU"
+          ]
+        },
+        "relevancyValue": {
+          "type": "string",
+          "description": "关联数值"
+        },
+        "remark": {
+          "type": "string",
+          "description": "备注"
+        }
+      },
+      "title": "TEquipmentProtocolTemplateEntity对象"
+    },
+    "TEquipmentTypeEntity对象": {
+      "type": "object",
+      "properties": {
+        "createTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "创建时间"
+        },
+        "creator": {
+          "type": "string",
+          "description": "创建人"
+        },
+        "id": {
+          "type": "string",
+          "description": "主键ID"
+        },
+        "lastModifyTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "最后修改时间"
+        },
+        "name": {
+          "type": "string",
+          "description": "类型名称"
+        }
+      },
+      "title": "TEquipmentTypeEntity对象"
+    },
+    "TModelCurveHistoryEntity对象": {
+      "type": "object",
+      "properties": {
+        "createTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "创建时间"
+        },
+        "creator": {
+          "type": "string",
+          "description": "创建人"
+        },
+        "curveName": {
+          "type": "string",
+          "description": "曲线图名称"
+        },
+        "dataAmount": {
+          "type": "integer",
+          "format": "int32",
+          "description": "数据量"
+        },
+        "defaultShow": {
+          "type": "boolean",
+          "description": "默认展示"
+        },
+        "id": {
+          "type": "string",
+          "description": "主键ID"
+        },
+        "lastModifyTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "最后修改时间"
+        },
+        "modelConfigId": {
+          "type": "string",
+          "description": "模型配置id"
+        },
+        "modelProtocolTemplateId": {
+          "type": "string",
+          "description": "参数id"
+        }
+      },
+      "title": "TModelCurveHistoryEntity对象",
+      "description": "历史曲线图"
+    },
+    "TModelProtocolTemplateEntity对象": {
+      "type": "object",
+      "properties": {
+        "createTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "创建时间"
+        },
+        "creator": {
+          "type": "string",
+          "description": "创建人"
+        },
+        "dataActiveTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "数据有效时长"
+        },
+        "dataBitLength": {
+          "type": "integer",
+          "format": "int32",
+          "description": "数据位长度"
+        },
+        "dataBitOffset": {
+          "type": "integer",
+          "format": "int32",
+          "description": "数据位偏移量"
+        },
+        "dataCollectFrequency": {
+          "type": "integer",
+          "format": "int64",
+          "description": "采集频率"
+        },
+        "dataHistory": {
+          "type": "boolean",
+          "description": "历史"
+        },
+        "dataKey": {
+          "type": "string",
+          "description": "数据KEY"
+        },
+        "dataLocalType": {
+          "type": "string",
+          "description": "数据本地类型，DataLocalTypeEnum",
+          "enum": [
+            "STRING",
+            "INTEGER",
+            "DOUBLE",
+            "FLOAT",
+            "BOOLEAN",
+            "BYTE"
+          ]
+        },
+        "dataName": {
+          "type": "string",
+          "description": "数据名称"
+        },
+        "dataNativeType": {
+          "type": "string",
+          "description": "数据原生类型，DataNativeTypeEnum",
+          "enum": [
+            "INT",
+            "REAL",
+            "BOOL",
+            "SINT"
+          ]
+        },
+        "dataRatio": {
+          "type": "integer",
+          "format": "int32",
+          "description": "数据比例，默认1"
+        },
+        "dataUnit": {
+          "type": "string",
+          "description": "单位"
+        },
+        "id": {
+          "type": "string",
+          "description": "主键ID"
+        },
+        "lastModifyTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "最后修改时间"
+        },
+        "modelConfigId": {
+          "type": "string",
+          "description": "模型配置id"
+        },
+        "modelProtocolDataType": {
+          "type": "string",
+          "description": "数据类型 比如定义 温度 模拟量 状态量",
+          "enum": [
+            "WEN_DU",
+            "MO_NI_LIANG",
+            "ZHUANG_TAI_LIANG"
+          ]
+        },
+        "registerId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "寄存器id"
+        },
+        "registerTypeEnum": {
+          "type": "string",
+          "description": "寄存器类型，RegisterTypeEnum",
+          "enum": [
+            "MODBUS_TCP_READ_COILS",
+            "MODBUS_TCP_DISCRETE_INPUTS",
+            "MODBUS_TCP_HOLDING_REGISTERS",
+            "MODBUS_TCP_READ_INPUT_REGISTERS",
+            "SIEMENS_S7_DB"
+          ]
+        },
+        "relevancyDataId": {
+          "type": "string",
+          "description": "关联数据id t_model_protocol_template的id"
+        },
+        "relevancyStatus": {
+          "type": "string",
+          "description": "关联数据状态",
+          "enum": [
+            "DA_YU",
+            "DENG_YU",
+            "XIAO_YU",
+            "DA_YU_DENG_YU",
+            "XIAO_YU_DENG_YU",
+            "BU_DENG_YU"
+          ]
+        },
+        "relevancyValue": {
+          "type": "string",
+          "description": "关联数值"
+        },
+        "remark": {
+          "type": "string",
+          "description": "备注"
+        }
+      },
+      "title": "TModelProtocolTemplateEntity对象"
+    },
+    "TProjectDataGroupEntity对象": {
+      "type": "object",
+      "properties": {
+        "createTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "创建时间"
+        },
+        "creator": {
+          "type": "string",
+          "description": "创建人"
+        },
+        "id": {
+          "type": "string",
+          "description": "主键ID"
+        },
+        "lastModifyTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "最后修改时间"
+        },
+        "name": {
+          "type": "string",
+          "description": "数据组名称"
+        },
+        "projectId": {
+          "type": "string",
+          "description": "项目id"
+        },
+        "protocol": {
+          "type": "integer",
+          "format": "int32",
+          "description": "协议接口"
+        }
+      },
+      "title": "TProjectDataGroupEntity对象",
+      "description": "数据组表"
+    },
+    "TProjectLineEntity对象": {
+      "type": "object",
+      "properties": {
+        "createTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "创建时间"
+        },
+        "creator": {
+          "type": "string",
+          "description": "创建人"
+        },
+        "id": {
+          "type": "string",
+          "description": "主键ID"
+        },
+        "lastModifyTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "最后修改时间"
+        },
+        "linePicture": {
+          "type": "string",
+          "description": "生产线图片"
+        },
+        "remark": {
+          "type": "string",
+          "description": "备注"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32",
+          "description": "状态"
+        },
+        "tprojectId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "TProjectLineEntity对象"
+    },
+    "TProjectProtocolEntity对象": {
+      "type": "object",
+      "properties": {
+        "createTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "创建时间",
+          "refType": null
+        },
+        "creator": {
+          "type": "string",
+          "description": "创建人",
+          "refType": null
+        },
+        "dataActiveTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "数据有效时长",
+          "refType": null
+        },
+        "dataBitLength": {
+          "type": "integer",
+          "format": "int32",
+          "description": "数据位长度",
+          "refType": null
+        },
+        "dataBitOffset": {
+          "type": "integer",
+          "format": "int32",
+          "description": "数据位偏移量",
+          "refType": null
+        },
+        "dataCollectFrequency": {
+          "type": "integer",
+          "format": "int64",
+          "description": "采集频率",
+          "refType": null
+        },
+        "dataHistory": {
+          "type": "boolean",
+          "description": "历史",
+          "refType": null
+        },
+        "dataKey": {
+          "type": "string",
+          "description": "数据KEY",
+          "refType": null
+        },
+        "dataLocalType": {
+          "type": "string",
+          "description": "数据本地类型，DataLocalTypeEnum",
+          "enum": [
+            "STRING",
+            "INTEGER",
+            "DOUBLE",
+            "FLOAT",
+            "BOOLEAN",
+            "BYTE"
+          ],
+          "refType": null
+        },
+        "dataName": {
+          "type": "string",
+          "description": "数据名称",
+          "refType": null
+        },
+        "dataNativeType": {
+          "type": "string",
+          "description": "数据原生类型，DataNativeTypeEnum",
+          "enum": [
+            "INT",
+            "REAL",
+            "BOOL",
+            "SINT"
+          ],
+          "refType": null
+        },
+        "dataRatio": {
+          "type": "integer",
+          "format": "int32",
+          "description": "数据比例，默认1",
+          "refType": null
+        },
+        "dataUnit": {
+          "type": "string",
+          "description": "单位",
+          "refType": null
+        },
+        "id": {
+          "type": "string",
+          "description": "主键ID",
+          "refType": null
+        },
+        "lastModifyTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "最后修改时间",
+          "refType": null
+        },
+        "modelConfigId": {
+          "type": "string",
+          "description": "模型配置id",
+          "refType": null
+        },
+        "modelProtocolDataType": {
+          "type": "string",
+          "description": "数据类型 比如定义 温度 模拟量 状态量",
+          "enum": [
+            "WEN_DU",
+            "MO_NI_LIANG",
+            "ZHUANG_TAI_LIANG"
+          ],
+          "refType": null
+        },
+        "projectDataGroupId": {
+          "type": "string",
+          "description": "项目id",
+          "refType": null
+        },
+        "protocol": {
+          "type": "string",
+          "description": "数据协议",
+          "enum": [
+            "MODBUS_TCP",
+            "SIEMENS_S7"
+          ],
+          "refType": null
+        },
+        "registerId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "寄存器id",
+          "refType": null
+        },
+        "registerTypeEnum": {
+          "type": "string",
+          "description": "寄存器类型，RegisterTypeEnum",
+          "enum": [
+            "MODBUS_TCP_READ_COILS",
+            "MODBUS_TCP_DISCRETE_INPUTS",
+            "MODBUS_TCP_HOLDING_REGISTERS",
+            "MODBUS_TCP_READ_INPUT_REGISTERS",
+            "SIEMENS_S7_DB"
+          ],
+          "refType": null
+        },
+        "relevancyDataId": {
+          "type": "string",
+          "description": "关联数据id t_model_protocol_template的id",
+          "refType": null
+        },
+        "relevancyStatus": {
+          "type": "string",
+          "description": "关联数据状态",
+          "enum": [
+            "DA_YU",
+            "DENG_YU",
+            "XIAO_YU",
+            "DA_YU_DENG_YU",
+            "XIAO_YU_DENG_YU",
+            "BU_DENG_YU"
+          ],
+          "refType": null
+        },
+        "relevancyValue": {
+          "type": "string",
+          "description": "关联数值",
+          "refType": null
+        },
+        "remark": {
+          "type": "string",
+          "description": "备注",
+          "refType": null
+        }
+      },
+      "title": "TProjectProtocolEntity对象",
+      "description": "项目数据配置"
+    }
+  }
+}

@@ -6,9 +6,7 @@
 
       <div class="dc-flex-1 height__zero">
         <ReferView v-if="refer.type === 'REFER'" />
-        <!--<Scroller v-else class="dc-full-height">-->
         <router-view v-else />
-        <!--</Scroller>-->
       </div>
     </div>
 

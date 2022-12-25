@@ -1,18 +1,14 @@
 <template>
   <div class="root dc-flex-row dc-full">
 
-    <div class="dc-flex-1">
-      <Scroller>
-        <router-view />
-      </Scroller>
+    <div class="refer-bound">
+      <Linker v-for="refer in menus" :key="pipe$(refer).vueKey" :refer="refer" class="dc-block"
+              :class="{'active-refer':refer.label===pipe$(activeToolRefer).seek('label').value}"
+              @click="onLikerClick(refer)" blocked sub-link />
     </div>
 
-    <div class="refer-bound">
-      <div class="border">
-        <Linker v-for="refer in menus" :key="pipe$(refer).vueKey" :refer="refer" class="dc-block"
-                :class="{'active-refer':refer.label===pipe$(activeToolRefer).seek('label').value}"
-                @click="onLikerClick(refer)" blocked sub-link />
-      </div>
+    <div class="dc-flex-1 border-left">
+      <router-view />
     </div>
 
   </div>
@@ -52,7 +48,11 @@ export default class OnlineTools extends Vue {
 </script>
 
 <style scoped lang="scss">
+@import "~@/style/variable.scss";
 .root {background:transparent;
   .refer-bound {width:200px;}
+  :deep {
+    .root-linker {border-bottom:$border;}
+  }
 }
 </style>

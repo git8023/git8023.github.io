@@ -32,5 +32,10 @@ module.exports = {
     'lines-between-class-members': 'off',
     'no-underscore-dangle': 'off',
     'class-methods-use-this': 'off',
+    'vuejs-accessibility/label-has-for': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    'vars-on-top': 'off',
+    'no-var': 'off',
+    '@typescript-eslint/no-empty-function': 'off',
   },
 };

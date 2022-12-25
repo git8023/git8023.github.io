@@ -1,3 +1,4 @@
+import { openApiTransfer } from '@/store/mod/openApiTransfer';
 import { sys } from '@/store/mod/sys';
 import { Cast, Jsons, types, vuex } from '@hyong8023/tool-box';
 import { createStore } from 'vuex';
@@ -5,7 +6,7 @@ import { createStore } from 'vuex';
 type M = vuex.ModuleX<any, any>;
 
 const mods: Array<M> = [
-  sys,
+  sys, openApiTransfer,
 ];
 
 export default createStore({

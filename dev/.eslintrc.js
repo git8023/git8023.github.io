@@ -37,5 +37,11 @@ module.exports = {
     'vars-on-top': 'off',
     'no-var': 'off',
     '@typescript-eslint/no-empty-function': 'off',
+    'vue/require-component-is': 'off',
+    'import/no-dynamic-require': 'off',
+    'global-require': 'off',
+    'no-undef': 'off',
+    'no-useless-constructor': 'off',
+    'max-classes-per-file': 'off',
   },
 };

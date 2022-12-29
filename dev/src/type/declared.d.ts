@@ -6315,6 +6315,8 @@ declare global {
   /** Available only in secure contexts. */
   interface FileSystemFileHandle extends FileSystemHandle {
     readonly kind: 'file';
+    getFile: () => Promise<File>;
+    createWritable: () => FileSystemWritableFileStream;
 
     getFile(): Promise<File>;
   }

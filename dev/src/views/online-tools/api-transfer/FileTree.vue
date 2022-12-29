@@ -1,62 +1,54 @@
 <template>
-  <div class="root-file-tree">
-    <div v-for="item in fileTree" :key="item.id">
-      {{ item.handle.name }}
-    </div>
+  <div class="root-file-tree dc-full-height">
+    <Scroller class="dc-full-height">
+      <FileTreeNode v-for="item in fileTree" :key="item.id" :node="item" />
+    </Scroller>
   </div>
 </template>
 
 <script lang="ts">
+import Scroller from '@/components/scroller/Scroller.vue';
+import { vms } from '@/type/vms';
+import FileTreeNode from '@/views/online-tools/api-transfer/FileTreeNode.vue';
 import { Strings } from '@hyong8023/tool-box';
 import { Options, Vue } from 'vue-class-component';
 import { Prop, Watch } from 'vue-property-decorator';
 
-// eslint-disable-next-line no-undef
-type DirHandle = FileSystemDirectoryHandle & {
-  // eslint-disable-next-line no-undef
-  values(): (FileSystemFileHandle | FileSystemDirectoryHandle)[]
-}
-
-type FileTreeNode = {
-  id: string,
-  // eslint-disable-next-line no-undef
-  handle: FileSystemFileHandle | DirHandle,
-  children: FileTreeNode[]
-}
-
 @Options({
-  components: {},
+  components: { Scroller, FileTreeNode },
   emits: [],
 })
 export default class FileTree extends Vue {
-  // eslint-disable-next-line no-undef
-  @Prop({ required: true }) root!: DirHandle;
+  @Prop({ required: true }) root!: vms.DirHandle;
 
-  fileTree: FileTreeNode[] = [];
+  fileTree: vms.FileTreeNode[] = [];
 
   @Watch('root')
   watch$root() {
+    this.fileTree.length = 0;
     if (this.root) {
-      this.readFiles();
+      this.readFiles(this.root, this.fileTree);
     }
   }
 
-  async readFiles() {
-    let children: FileTreeNode[] = [];
-    this.fileTree.push({
+  async readFiles(dirHandle: vms.DirHandle, nodes: vms.FileTreeNode[]) {
+    const tmpNodes: vms.FileTreeNode[] = [];
+    nodes.push({
       id: Strings.guid(),
-      handle: this.root,
-      children,
+      handle: dirHandle,
+      children: tmpNodes,
     });
-    for await (const fh of this.root.values()) {
-      let tmp: FileTreeNode[] = [];
-      children.push({
-        id: Strings.guid(),
-        children: tmp = [],
-        handle: fh as any,
-      });
+    for await (const fh of dirHandle.values()) {
+      if (fh.kind === 'file') {
+        tmpNodes.push({
+          id: Strings.guid(),
+          children: [],
+          handle: fh as any,
+        });
+      }
+
       if (fh.kind === 'directory') {
-        children = tmp;
+        await this.readFiles(fh as any, tmpNodes);
       }
     }
   }

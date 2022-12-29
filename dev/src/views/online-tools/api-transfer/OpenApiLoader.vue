@@ -40,22 +40,20 @@ import { Watch } from 'vue-property-decorator';
   emits: [],
 })
 export default class OpenApiLoader extends Vue {
-  @mod.openApiTransfer.Action('content') content_!: fns.Consume<any>;
+  @mod.openApiTransfer.Action('content') setContent!: fns.Consume<any>;
 
   code = 'No Data';
-  serveUrl = 'http://127.0.0.1:9900/DATA_COLLECTION_OpenAPI.json';
+  serveUrl = 'http://127.0.0.1:6500/DATA_COLLECTION_OpenAPI.json';
 
   @Watch('code')
   watch$code() {
-    this.content_(this.code);
+    this.setContent(JSON.parse(this.code));
   }
 
   onFetch() {
-    fetch(this.serveUrl).then((data) => data.json()).then((data) => this.code = JSON.stringify(
-      data,
-      null,
-      4,
-    ));
+    fetch(this.serveUrl).then((data) => data.json()).then((data) => {
+      this.code = JSON.stringify(data, null, 4);
+    });
   }
 }
 </script>

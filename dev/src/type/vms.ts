@@ -80,4 +80,25 @@ export namespace vms {
 
   /** 引用: 内部|外部 */
   export type Refer = OuterRefer | InnerRefer;
+
+  /** 目录句柄 */
+  export type DirHandle = FileSystemDirectoryHandle & {
+    values(): (FileSystemFileHandle | FileSystemDirectoryHandle)[]
+  }
+
+  /** 文件树节点 */
+  export type FileTreeNode = {
+    id: string,
+    /** 句柄 */
+    handle: FileSystemFileHandle | DirHandle,
+    /** 子文件(夹) */
+    children: FileTreeNode[]
+  }
+
+  /** 文件 */
+  export type FileX = {
+    id: string;
+    /** 句柄 */
+    handle: FileSystemFileHandle
+  }
 }

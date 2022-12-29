@@ -16,8 +16,7 @@ export default class Box extends Vue {
   rect: DOMRect = Cast.anyO;
 
   mounted() {
-    const rect = (this.$el as HTMLElement).getBoundingClientRect();
-    this.rect = rect;
+    this.rect = (this.$el as HTMLElement).getBoundingClientRect();
   }
 }
 </script>

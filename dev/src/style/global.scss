@@ -8,8 +8,8 @@
   &-top {border-top:$border;}
 }
 .active-refer {color:#00aff4;}
-.padding {
-  padding:$box-base;
+.padding { padding:$box-base;
+  &-top {padding-top:$box-base;}
   &-left {padding-left:$box-base;}
   &-bottom {padding-bottom:$box-base;
     &__zero {padding-bottom:0;}

@@ -6,18 +6,18 @@
         <el-button link type="primary" @click="onCopy">复制代码</el-button>
       </div>
     </div>
-    <Codemirror v-if="ready" v-model="modelValue" :extensions="extensions" :disabled="readonlyInner"
+    <Codemirror v-if="ready" v-model="code" :extensions="extensions" :disabled="readonlyInner"
                 :style="style" />
   </div>
 </template>
 
 <script lang="ts">
+import { javascript } from '@codemirror/lang-javascript';
+import { Extension } from '@codemirror/state';
+import { Cast, Documents } from '@hyong8023/tool-box';
 import { Options, Vue } from 'vue-class-component';
 import { Codemirror } from 'vue-codemirror';
 import { Prop, Watch } from 'vue-property-decorator';
-import { Extension } from '@codemirror/state';
-import { javascript } from '@codemirror/lang-javascript';
-import { Cast, Documents } from '@hyong8023/tool-box';
 
 @Options({
   components: { Codemirror },

@@ -32,7 +32,7 @@
 
 <script lang="ts">
 import { mod } from '@/store/mod';
-import { OpenApis } from '@/tools/OpenApis';
+import { OpenApis } from '@/tools/open-api/OpenApis';
 import { openApi } from '@/type/open-api';
 import FileOpener from '@/views/online-tools/api-transfer/FileOpener.vue';
 import FileTree from '@/views/online-tools/api-transfer/FileTree.vue';
@@ -71,11 +71,11 @@ export default class TransferBody extends Vue {
   async onTransfer() {
     const result = OpenApis.transfer(this.apiDocRoot);
 
-    const entityContent = result.entities();
-    const fileHandle = await this.handles.rootDir.getFileHandle('entity.ts', { create: true });
-    const wfs = await fileHandle.createWritable();
-    await wfs.write(entityContent);
-    await wfs.close();
+    // const entityContent = result.entities();
+    // const fileHandle = await this.handles.rootDir.getFileHandle('entity.ts', { create: true });
+    // const wfs = await fileHandle.createWritable();
+    // await wfs.write(entityContent);
+    // await wfs.close();
   }
 }
 </script>

@@ -1097,9 +1097,9 @@
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
 "@hyong8023/tool-box@^1.0.53":
-  version "1.0.53"
-  resolved "https://registry.npmmirror.com/@hyong8023/tool-box/-/tool-box-1.0.53.tgz#999604368315aa88e12e8d14b15d503526c0c359"
-  integrity sha512-jgEV117X0MYQzMhWFU5s8XnLe3iwflfmyUeoFrTrqkoVg4dBmP02TXhS+n2403DsDmTPGa3jmkj7qFHvVVKUFg==
+  version "1.0.54"
+  resolved "https://registry.npmmirror.com/@hyong8023/tool-box/-/tool-box-1.0.54.tgz#0760fbb8646b389b305839ab4262f660903077aa"
+  integrity sha512-f0nsojKgxVI+NgTjuXxoym2bNs1vHD+Gjf5+S71yhbgcM2SdAPTsK1/dv3ZsLQwfXWHOiwk/NBj00ttnDZ8LSw==
   dependencies:
     mockjs "^1.1.0"
 

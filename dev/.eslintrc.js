@@ -43,5 +43,7 @@ module.exports = {
     'no-undef': 'off',
     'no-useless-constructor': 'off',
     'max-classes-per-file': 'off',
+    '@typescript-eslint/no-misused-new': 'off',
+    'import/named': 'off',
   },
 };

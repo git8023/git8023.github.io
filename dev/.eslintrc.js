@@ -45,5 +45,7 @@ module.exports = {
     'max-classes-per-file': 'off',
     '@typescript-eslint/no-misused-new': 'off',
     'import/named': 'off',
+    'function-paren-newline': 'off',
+    'max-len': 'off',
   },
 };

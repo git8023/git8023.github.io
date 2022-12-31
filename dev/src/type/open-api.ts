@@ -2,6 +2,9 @@ export namespace openApi {
   /** 主要类型 */
   export type PrimaryType = 'integer' | 'string' | 'array' | 'boolean';
 
+  /** JS类型字符串 */
+  export type JSTypeString = 'number' | 'string' | 'boolean' | '[]';
+
   /** 文档根节点 */
   export interface Root {
     /** 主机 */
@@ -58,7 +61,7 @@ export namespace openApi {
     /** 参数名 */
     name: string,
     /** 参数位置 */
-    in: 'path' | 'body',
+    in: 'path' | 'body' | 'query',
     /** 参数描述 */
     description: string,
     /** 是否必须 */
@@ -77,7 +80,7 @@ export namespace openApi {
     /** 描述 */
     description: 'ok' | string;
     /** 数据结构 */
-    schema: ResponseSchema;
+    schema: ResponseSchema | ResponseArraySchema;
   }
 
   /** 响应结构纲要 */
@@ -86,8 +89,13 @@ export namespace openApi {
     $ref: string;
     /** definitions 中定义的对象节点索引 */
     originalRef: string;
+  }
+
+  export interface ResponseArraySchema {
     /** 主要类型 */
     type: PrimaryType;
+    /** 元素类型 */
+    items: ResponseSchema;
   }
 
   /**

@@ -18,7 +18,7 @@
         </el-checkbox-group>
       </el-form-item>
       <el-form-item label="&nbsp;">
-        <el-button type="primary" @click="onTransfer()">Transfer</el-button>
+        <el-button type="primary" @click="onTransfer()" :loading="loading">Transfer</el-button>
       </el-form-item>
     </el-form>
 
@@ -36,7 +36,8 @@ import { OpenApis } from '@/tools/open-api/OpenApis';
 import { openApi } from '@/type/open-api';
 import FileOpener from '@/views/online-tools/api-transfer/FileOpener.vue';
 import FileTree from '@/views/online-tools/api-transfer/FileTree.vue';
-import { Cast, fns } from '@hyong8023/tool-box';
+import { Cast, Events, fns, Jsons } from '@hyong8023/tool-box';
+import { ElMessage } from 'element-plus';
 import { Options, Vue } from 'vue-class-component';
 
 @Options({
@@ -56,11 +57,11 @@ export default class TransferBody extends Vue {
     entityInOneFile: true,
     extract: Object.keys(this.extractMods),
   };
-
   handles = {
     // eslint-disable-next-line no-undef
     rootDir: Cast.nil as FileSystemDirectoryHandle,
   };
+  loading = false;
 
   async onChooseLocalDirectory() {
     this.handles.rootDir = await window.showDirectoryPicker();
@@ -69,13 +70,33 @@ export default class TransferBody extends Vue {
 
   // 开始转换
   async onTransfer() {
+    this.loading = true;
     const result = OpenApis.transfer(this.apiDocRoot);
 
-    // const entityContent = result.entities();
-    // const fileHandle = await this.handles.rootDir.getFileHandle('entity.ts', { create: true });
-    // const wfs = await fileHandle.createWritable();
-    // await wfs.write(entityContent);
-    // await wfs.close();
+    // 写入数据结构
+    const entityContent = result.entities();
+    const fileHandle = await this.handles.rootDir.getFileHandle('entity.ts', { create: true });
+    await this.writeFile(fileHandle, entityContent);
+
+    // 写入网络请求
+    const netServeDir = await this.handles.rootDir.getDirectoryHandle(
+      'net-serve',
+      { create: true },
+    );
+    await Jsons.foreach(result.apis, async ({ item: content, index: filename }) => {
+      const fileHandle = await netServeDir.getFileHandle(`${filename}.ts`, { create: true });
+      // const wfs = await fileHandle.createWritable();
+      await this.writeFile(fileHandle, content);
+    }, false);
+    ElMessage.success('导出成功');
+    this.loading = false;
+  }
+
+  // 写入文件
+  async writeFile(fh: FileSystemFileHandle, content: string | BufferSource | Blob) {
+    const wfs = await fh.createWritable();
+    await wfs.write(content);
+    await wfs.close();
   }
 }
 </script>

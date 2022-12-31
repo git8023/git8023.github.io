@@ -1,8 +1,9 @@
 import { DataDefinition } from '@/tools/open-api/DataDefinition';
 import { OpenApiCommons } from '@/tools/open-api/OpenApiCommons';
 import { RequestDefine } from '@/tools/open-api/RequestDefine';
+import { Template } from '@/tools/open-api/Template';
 import { openApi } from '@/type/open-api';
-import { Jsons } from '@hyong8023/tool-box';
+import { Arrays, Cast, Jsons, types } from '@hyong8023/tool-box';
 
 export class OpenApis {
   /** 根文档 */
@@ -15,9 +16,9 @@ export class OpenApis {
   static transfer(root: openApi.Root) {
     this.root = root;
     const definitions = this.extractDefinitions();
-    this.extractPaths();
     return {
       entities: () => this.generateEntities(definitions),
+      apis: this.extractPaths(),
     };
   }
 
@@ -28,11 +29,8 @@ export class OpenApis {
   private static extractDefinitions(): DataDefinition[] {
     return Object.values(this.root.definitions)
                  .filter((e) => e.type === 'object')
-                 .reduce((result, schemaDefine) => {
-                   const dataDefinition = new DataDefinition(schemaDefine);
-                   result.push(dataDefinition);
-                   return result;
-                 }, [] as DataDefinition[]);
+                 .filter((e) => !e.title.includes('«'))
+                 .map((schemaDefine) => new DataDefinition(schemaDefine));
   }
 
   /**
@@ -41,31 +39,34 @@ export class OpenApis {
    * @private
    */
   private static generateEntities(definitions: DataDefinition[]): string {
-    const placeholder = '{ENTITIES}';
-    const tpl = `
-export namespace entity {
-  ${placeholder}
-}`;
-    const entities = definitions.reduce((result, item) => {
-      result.push(item.result);
-      return result;
-    }, [] as string[]);
-
-    return tpl.replace(
-      placeholder,
-      entities.map(OpenApiCommons.fixWhitespace).join('\n'),
-    );
+    const entities = definitions.map(({ result }) => result)
+                                .map(OpenApiCommons.fixWhitespace)
+                                .join('\n');
+    return new Template(['$classes$'])
+      .setContent((km) => `export namespace entity {\n${km.$classes$}\n}`)
+      .replaceAll({ $classes$: entities })
+      .result;
   }
 
   /**
    * 提取请求路径定义
    * @private
    */
-  private static extractPaths() {
+  private static extractPaths(): types.RecordS<string> {
     const rds: RequestDefine[] = [];
-    Jsons.foreach(this.root.paths, ({ item: operation, index: path }) => {
-      const requestDefine = new RequestDefine(path, operation, this.root);
+    Jsons.foreach(this.root.paths, (iter) => {
+      const requestDefine = new RequestDefine(iter.index, iter.item, this.root);
       rds.push(requestDefine);
     });
+
+    const result: types.RecordS<string> = Cast.as();
+    Jsons.foreach(
+      Arrays.group(rds, 'className'),
+      ({ item: rds, index: className }) => {
+        result[className] = RequestDefine.result(className, rds);
+      },
+    );
+
+    return result;
   }
 }

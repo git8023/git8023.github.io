@@ -3,9 +3,11 @@
 
     <Box class="files-opened-scroller">
       <template #default="{rect}">
-        <el-tabs v-model="openedFile" type="card" closable :style="{width:rect.width+'px'}"
-                 @tab-change="onTabChange($event)">
-          <el-tab-pane v-for="item in files" :key="item.id" :label="item.handle.name"
+        <el-tabs v-model="openedFile" type="card" :style="{width:rect.width+'px'}"
+                 @tab-change="onTabChange($event)" @tab-remove="onTabRemove($event)"
+                 :closable="filePanelClosable">
+          <el-tab-pane v-for="item in files" :key="item.id"
+                       :label="item.handle.name + '-' + filePanelClosable"
                        :name="item.id" />
         </el-tabs>
       </template>
@@ -47,6 +49,16 @@ export default class FileOpener extends Vue {
     return Arrays.toMap(this.files, 'id');
   }
 
+  // 当前文件索引
+  get currentFileIndex() {
+    return this.files.indexOf(this.currentFile);
+  }
+
+  // 文件标签是否允许关闭
+  get filePanelClosable() {
+    return this.files.length > 1;
+  }
+
   @Watch('currentFile', { immediate: true })
   watch$currentFile() {
     if (!this.currentFile) {
@@ -76,6 +88,32 @@ export default class FileOpener extends Vue {
   onTabChange(openedFile: string) {
     const file = this.fileMapper[openedFile];
     this.setCurrentFile(file);
+  }
+
+  // 关闭选项卡
+  onTabRemove(fileId: string) {
+    const { currentFileIndex } = this;
+
+    let closedFileIndex!: number;
+    const files = this.files.filter(({ id }, index) => {
+      if (id === fileId) {
+        closedFileIndex = index;
+        return false;
+      }
+      return true;
+    });
+
+    let nextFile: vms.FileX;
+    if (currentFileIndex === closedFileIndex) {
+      const nextFileIndex = Math.min(files.length - 1, closedFileIndex);
+      nextFile = files[nextFileIndex];
+    } else {
+      nextFile = this.currentFile;
+    }
+
+    this.setFiles(files);
+    this.setCurrentFile(nextFile);
+    this.readFileContent();
   }
 }
 </script>

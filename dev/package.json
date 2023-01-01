@@ -11,6 +11,7 @@
     "@codemirror/lang-javascript": "^6.1.2",
     "@codemirror/state": "^6.1.4",
     "@hyong8023/tool-box": "^1.0.55",
+    "D": "^1.0.0",
     "axios": "^1.2.1",
     "codemirror": "^6.0.1",
     "core-js": "^3.8.3",
@@ -27,6 +28,7 @@
     "vuex-class": "^0.3.2"
   },
   "devDependencies": {
+    "@types/wicg-file-system-access": "^2020.9.5",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "@vue/cli-plugin-babel": "~5.0.0",

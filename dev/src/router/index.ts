@@ -16,7 +16,8 @@ const routes: Array<RouteRecordRaw> = [
         path: '',
         component: OnlineTools,
         children: [
-          { path: '', component: OpenApiTransfer },
+          { path: '', redirect: '/online-tools/knife4jApiTransfer' },
+          { path: 'knife4jApiTransfer', component: OpenApiTransfer },
         ],
       },
     ],

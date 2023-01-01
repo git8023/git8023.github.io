@@ -52,6 +52,11 @@ export default class FileTree extends Vue {
       }
     }
   }
+
+  // 重新渲染
+  rerender() {
+    this.watch$root();
+  }
 }
 </script>
 

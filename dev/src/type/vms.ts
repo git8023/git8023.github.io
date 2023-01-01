@@ -101,4 +101,7 @@ export namespace vms {
     /** 句柄 */
     handle: FileSystemFileHandle
   }
+
+  /** 提取模式 */
+  export type ExtractMod = 'entities' | 'enums' | 'netApis'
 }

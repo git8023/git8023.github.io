@@ -6,4 +6,5 @@ export const openApiTransfer = StoreTools.generate({
   content: Cast.anyO,
   files: Cast.anyA as vms.FileX[],
   currentFile: Cast.nil as vms.FileX,
+  extractMod: Cast.anyA as vms.ExtractMod[],
 }, true, 'openApiTransfer');

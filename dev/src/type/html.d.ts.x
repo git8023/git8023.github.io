@@ -6272,6 +6272,8 @@ declare global {
     removeEntry(name: string, options?: FileSystemRemoveOptions): Promise<void>;
 
     resolve(possibleDescendant: FileSystemHandle): Promise<string[] | null>;
+
+    values(): any;
   }
 
   declare var FileSystemDirectoryHandle: {

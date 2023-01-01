@@ -19,7 +19,7 @@ import Linker from '@/components/linker/Linker.vue';
 import Scroller from '@/components/scroller/Scroller.vue';
 import { mod } from '@/store/mod';
 import { vms } from '@/type/vms';
-import { Cast, fns } from '@hyong8023/tool-box';
+import { Arrays, Cast, fns } from '@hyong8023/tool-box';
 import { Options, Vue } from 'vue-class-component';
 
 @Options({
@@ -31,8 +31,19 @@ export default class OnlineTools extends Vue {
   @mod.sys.Getter('toolRefer') activeToolRefer!: vms.Refer;
 
   menus: vms.InnerRefer[] = [
-    { type: 'INNER', path: 'online-tools/', label: '接口转换' },
+    { type: 'INNER', path: '/online-tools/knife4jApiTransfer', label: 'Knife4j API Transfer' },
   ];
+
+  get menuMapper() {
+    return Arrays.toMap(this.menus, 'path');
+  }
+
+  mounted() {
+    const menu = this.menuMapper[this.$route.path];
+    if (menu) {
+      this.onLikerClick(menu);
+    }
+  }
 
   unmounted() {
     this.setActiveToolRefer(Cast.nil);

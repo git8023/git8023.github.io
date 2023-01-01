@@ -9,7 +9,7 @@
 import Linker from '@/components/linker/Linker.vue';
 import { mod } from '@/store/mod';
 import { vms } from '@/type/vms';
-import { fns } from '@hyong8023/tool-box';
+import { Arrays, fns } from '@hyong8023/tool-box';
 import { Options, Vue } from 'vue-class-component';
 
 @Options({
@@ -28,10 +28,33 @@ export default class TopMenu extends Vue {
     },
     {
       type: 'INNER',
-      label: '在线工具',
-      path: 'online-tools',
+      label: 'Online Tools',
+      path: '/online-tools',
     },
   ];
+
+  get pathReferMapper() {
+    return Arrays.toMap(this.refers, 'path');
+  }
+
+  mounted() {
+    if (this.$route.path === '/') {
+      this.onLikerClick(this.refers[0]);
+      return;
+    }
+
+    let refer = this.pathReferMapper[this.$route.path];
+    if (refer) {
+      this.onLikerClick(refer);
+      return;
+    }
+
+    const path = this.$route.path.split('/')[1];
+    refer = this.pathReferMapper[`/${path}`];
+    if (refer) {
+      this.onLikerClick(refer);
+    }
+  }
 
   onLikerClick(refer: vms.Refer) {
     this.setActiveTopRefer(refer);

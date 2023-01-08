@@ -31,6 +31,11 @@ export default class TopMenu extends Vue {
       label: 'Online Tools',
       path: '/online-tools',
     },
+    {
+      type: 'INNER',
+      label: 'Lab',
+      path: '/laboratory',
+    },
   ];
 
   get pathReferMapper() {

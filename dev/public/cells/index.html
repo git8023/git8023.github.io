@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./lib/codemirror/codemirror.css">
+  <style>
+    body { padding:.5rem; }
+    c-entry + c-entry {margin-top:1rem;}
+  </style>
+
+  <script src="./lib/codemirror/codemirror.js"></script>
+  <script src="./lib/codemirror/language/javascript.js"></script>
+
+</head>
+<body>
+
+<script src="./com/TagX.js" defer></script>
+<c-entry note="自定义事件" id="customEventCE" console-results>
+  <tag-x slot="render" type="input" id="tagXInput"></tag-x>
+  <div slot="src-code"><pre class="dc-flex-1 border"><code>&lt;tag-x type="input" id="tagXInput" />
+
+class TagX extends HTMLElement {
+  construct(){
+    const customEvent = new CustomEvent('change', {
+      detail: {
+        origin: ev,
+        data: undefined,
+      },
+      bubbles: true,
+      cancelable: true,
+    });
+    this.dispatchEvent(customEvent);
+  }
+}
+
+document.getElementById('tagXInput')
+  .addEventListener('change', evt => {
+    console.log('change-addEventListener', evt);
+    let $result = $('[data-result="customEventResult"]');
+    let text = $('&lt;div>', {class: 'result-item'})
+      .html(`${new Date().toLocaleTimeString()} change-addEventListener: 【evt.type:${evt.type}】 【evt.detail:${JSON.stringify(evt.detail)}】`);
+    $result.prepend(text);
+  })
+      </code></pre>
+  </div>
+  <div slot="console"></div>
+  <script>
+    document.getElementById('tagXInput')
+            .addEventListener('change', evt => {
+              /**@type CEntry*/
+              let ceTag = document.getElementById('customEventCE');
+              let log = `${ new Date().toLocaleTimeString() } change-addEventListener: 【evt.type:${ evt.type }】 【evt.detail:${ JSON.stringify(
+                evt.detail) }】`;
+              ceTag.setAttribute('console-results', log);
+            })
+  </script>
+</c-entry>
+
+
+<script type="module" src="./com/TagDataBinding.js" defer></script>
+<c-entry note="数据单属性双向绑定" id="dataBindCE" src-code="['./component/TagDataBinding.ts']">
+  <tag-data-binding slot="render" value="1" name="foo" id="dataBinding"></tag-data-binding>
+  <script type="module">
+    import { CommTool }    from "./com/tool/comm-tool.js";
+    import { Reflections } from './com/tool/Reflections.js'
+    CommTool.closure(() => {
+      /**@type TagDataBinding*/
+      let tdb = document.getElementById('dataBinding');
+      tdb.set('value', '2');
+
+      const o = window.o = {oName: 'foo'};
+      const op = tdb.bind(o, 'oName', 'value');
+      console.log('-----------------', "op.oName = 'bar-1'")
+      op.oName = 'bar-1';
+      console.log('o.oName', o.oName, o);
+      console.log('op.oName', op.oName, op.oName, op);
+
+      console.log('\n-----------------', "o.oName = 'bar-2'")
+      o.oName = 'bar-2';
+      console.log('o.oName', o.oName, o);
+      console.log('op.oName', op.oName, op.oName, op);
+
+      tdb.bind(o, 'value', 'value');
+      o.value = 1;
+
+      Reflections.watch(o, 'value', (nv, ov) => {
+        console.log('Reflections.watch[index.html]', ov, '==>', nv);
+      })
+    });
+  </script>
+</c-entry>
+
+<!--<input type="text" id="xx">
+<script type="module">
+  import { CommTool } from './com/tool/comm-tool.js'
+
+  CommTool.closure(() => {
+    /**@type HTMLInputElement*/
+    let $xx = document.querySelector('#xx')
+    $xx.addEventListener('keydown', () =>   console.log(' keydown', $xx.value));
+    $xx.addEventListener('keypress', () =>  console.log('keypress', $xx.value));
+    $xx.addEventListener('keyup', () =>     console.log('   keyup', $xx.value));
+    $xx.addEventListener('input', () =>     console.log('   input', $xx.value));
+    $xx.addEventListener('change', () =>    console.log('  change', $xx.value));
+  })
+</script>-->
+
+
+<script src="./com/base/CEntry.js"></script>
+</body>
+</html>

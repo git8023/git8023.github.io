@@ -5,7 +5,7 @@
       <TopMenu />
 
       <div class="dc-flex-1 height__zero">
-        <ReferView v-if="refer.type === 'REFER'" />
+        <ReferView v-if="referType === 'REFER'" :refer="refer" />
         <router-view v-else />
       </div>
     </div>
@@ -19,6 +19,7 @@ import ReferView from '@/components/refer-view/ReferView.vue';
 import Scroller from '@/components/scroller/Scroller.vue';
 import { mod } from '@/store/mod';
 import { vms } from '@/type/vms';
+import { Jsons } from '@hyong8023/tool-box';
 import { Options, Vue } from 'vue-class-component';
 
 @Options({
@@ -26,7 +27,11 @@ import { Options, Vue } from 'vue-class-component';
   emits: [],
 })
 export default class Layout extends Vue {
-  @mod.sys.Getter('topRefer') refer!: vms.Refer;
+  @mod.sys.Getter('topRefer') refer!: vms.OuterRefer;
+
+  get referType() {
+    return Jsons.get(this.refer, 'type');
+  }
 }
 </script>
 

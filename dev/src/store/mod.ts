@@ -1,3 +1,4 @@
+import { laboratory } from '@/store/mod/laboratory';
 import { openApiTransfer } from '@/store/mod/openApiTransfer';
 import { sys } from '@/store/mod/sys';
 import { StoreTools } from '@hyong8023/tool-box';
@@ -8,4 +9,7 @@ export class mod {
 
   /** 开放接口 */
   static readonly openApiTransfer = StoreTools.namespaceX(openApiTransfer);
+
+  /** 实验室 */
+  static readonly laboratory = StoreTools.namespaceX(laboratory);
 }

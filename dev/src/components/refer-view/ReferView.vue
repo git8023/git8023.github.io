@@ -5,16 +5,16 @@
 </template>
 
 <script lang="ts">
-import { mod } from '@/store/mod';
 import { vms } from '@/type/vms';
 import { Options, Vue } from 'vue-class-component';
+import { Prop } from 'vue-property-decorator';
 
 @Options({
   components: {},
   emits: [],
 })
 export default class ReferView extends Vue {
-  @mod.sys.Getter('topRefer') refer!: vms.OuterRefer;
+  @Prop({ required: true }) refer!: vms.OuterRefer;
 }
 </script>
 

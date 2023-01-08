@@ -1,7 +1,7 @@
 <template>
   <div class="root dc-flex-row dc-full">
 
-    <div class="refer-bound">
+    <div class="left-nav-bounds">
       <Linker v-for="refer in menus" :key="pipe$(refer).vueKey" :refer="refer" class="dc-block"
               :class="{'active-refer':refer.label===pipe$(activeToolRefer).seek('label').value}"
               @click="onLikerClick(refer)" blocked sub-link />
@@ -34,10 +34,12 @@ export default class OnlineTools extends Vue {
     { type: 'INNER', path: '/online-tools/knife4jApiTransfer', label: 'Knife4j API Transfer' },
   ];
 
+  // 菜单映射
   get menuMapper() {
     return Arrays.toMap(this.menus, 'path');
   }
 
+  // 组件挂载
   mounted() {
     const menu = this.menuMapper[this.$route.path];
     if (menu) {
@@ -45,10 +47,12 @@ export default class OnlineTools extends Vue {
     }
   }
 
+  // 组件卸载
   unmounted() {
     this.setActiveToolRefer(Cast.nil);
   }
 
+  // 点击左侧链接
   onLikerClick(refer: vms.InnerRefer) {
     this.setActiveToolRefer(refer);
     if (refer.type === 'INNER') {
@@ -60,10 +64,5 @@ export default class OnlineTools extends Vue {
 
 <style scoped lang="scss">
 @import "~@/style/variable.scss";
-.root {background:transparent;
-  .refer-bound {width:200px;}
-  :deep {
-    .root-linker {border-bottom:$border;}
-  }
-}
+.root {background:transparent;}
 </style>

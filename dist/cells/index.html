@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+      body {
+          padding: .5rem;
+      }
+
+      dl {
+          margin-bottom: 1rem;
+      }
+
+      dd {
+          margin-top: .5rem;
+          transition: all .3s;
+          margin-left: 0;
+      }
+
+      dd.collapse {
+          height: 0;
+          overflow: hidden;
+          padding: 0;
+          border: 0;
+      }
+
+      pre {
+          margin: 0;
+          background: #eee;
+          padding: .5rem;
+      }
+
+      .group {
+          color: #00aff4;
+          cursor: pointer;
+      }
+
+      .group:hover {
+          color: #ff394b;
+      }
+
+      .border {
+          border: 1px solid #999;
+      }
+
+      .result-bound {
+          max-height: 200px;
+          overflow: auto;
+      }
+
+      .result-item {
+          padding: .25rem;
+      }
+  </style>
+
+  <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="./lib/TagX.js" defer></script>
+</head>
+<body>
+
+<dl>
+  <dt>
+    <span class="group">1. 自定义事件: </span>
+  </dt>
+  <dd>
+    <tag-x type="input" id="tagXInput" @change="onChanged(this, event)">x</tag-x>
+    <div class="dc-flex-row dc-gap-top">
+      <pre class="dc-flex-1 border"><code>&lt;tag-x type="input" id="tagXInput">x&lt;/tag-x>
+
+class TagX extends HTMLElement {
+  construct(){
+    const customEvent = new CustomEvent('change', {
+      detail: {
+        origin: ev,
+        data: undefined,
+      },
+      bubbles: true,
+      cancelable: true,
+    });
+    this.dispatchEvent(customEvent);
+  }
+}
+
+document.getElementById('tagXInput')
+  .addEventListener('change', evt => {
+    console.log('change-addEventListener', evt);
+    let $result = $('[data-result="customEventResult"]');
+    let text = $('&lt;div>', {class: 'result-item'})
+      .html(`${new Date().toLocaleTimeString()} change-addEventListener: 【evt.type:${evt.type}】 【evt.detail:${JSON.stringify(evt.detail)}】`);
+    $result.prepend(text);
+  })
+</code></pre>
+      <div class="dc-flex-1 dc-gap-left-2x border result-bound" data-result="customEventResult"></div>
+    </div>
+  </dd>
+</dl>
+
+
+<script>
+
+  $('dt').click(function () {
+    let $this = $(this);
+    $this.parent().children('dd').toggleClass('collapse');
+  });
+
+  document.getElementById('tagXInput')
+    .addEventListener('change', evt => {
+      console.log('change-addEventListener', evt);
+      let $result = $('[data-result="customEventResult"]');
+      let text = $('<div>', {class: 'result-item'})
+        .html(`${new Date().toLocaleTimeString()} change-addEventListener: 【evt.type:${evt.type}】 【evt.detail:${JSON.stringify(evt.detail)}】`);
+      $result.prepend(text);
+    })
+</script>
+</body>
+</html>

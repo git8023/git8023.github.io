@@ -49,13 +49,18 @@ class CEntry extends HTMLElement {
       .display-none {display:none;}
       textarea.code {height:300px;}
 
-      // .box-bound {transition:all .3s;}
+      // .box-bound {transition:all 2s;}
       .collage {height:0!important; overflow:hidden;}
       ul {width:100%; overflow:auto; background:#2b2b2b; color:#999;}
       li {border-bottom:1px dashed #323232; padding:.25rem; white-space:nowrap;}
       li:hover {background:#323232;}
       .render-box {max-height:30%;}
       .width__zero {width:0;}
+
+      .CodeMirror .CodeMirror-vscrollbar,
+      .CodeMirror .CodeMirror-hscrollbar {opacity:0; transition:all 1s;}
+      .CodeMirror:hover .CodeMirror-vscrollbar,
+      .CodeMirror:hover .CodeMirror-hscrollbar {opacity:1;}
     `;
     return styleTag;
   }
@@ -97,6 +102,7 @@ class CEntry extends HTMLElement {
     this.codeMirror = CodeMirror.fromTextArea(tae, {
       lineNumbers: true,
       mode: 'javascript',
+      readOnly: 'nocursor',
     });
     const boxBound = this.root.getElementById('boxBound');
     const rect = boxBound.getBoundingClientRect();
@@ -137,7 +143,10 @@ class CEntry extends HTMLElement {
   get logger() {
     return {
       log: (...args: any[]) => {
-        const msg = args.map((e) => JSON.stringify(e).substring(1).replace(/("$)/, '')).join(' ');
+        const msg = args.map((e) => JSON.stringify(e)
+                                        .replace(/^(")/, '')
+                                        .replace(/("$)/, ''))
+                        .join(' ');
         this.appendResult(msg);
       },
     };

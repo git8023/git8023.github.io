@@ -32,7 +32,7 @@ export default class Laboratories extends Vue {
   @mod.laboratory.Getter('activeRefer') activeRefer!: vms.Refer;
 
   menus: vms.OuterRefer[] = [
-    { label: 'Cells', type: 'REFER', href: '/cells/index.html' },
+    { label: 'Cells', type: 'REFER', href: './cells/index.html' },
   ];
 
   get referType() {

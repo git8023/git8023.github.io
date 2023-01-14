@@ -23,14 +23,9 @@ class TagX extends HTMLElement {
         const input = document.createElement('input');
         input.setAttribute('placeholder', '转发按键事件');
         input.addEventListener('keydown', (ev) => {
-            console.log('createInput.focus', ev);
+            console.log('keydown', ev);
             const customEvent = new CustomEvent('change', {
-                detail: {
-                    origin: ev,
-                    data: input.value,
-                },
-                bubbles: true,
-                cancelable: true,
+                detail: { origin: ev, data: input.value },
             });
             this.dispatchEvent(customEvent);
         });

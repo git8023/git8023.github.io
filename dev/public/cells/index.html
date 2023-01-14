@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./lib/codemirror/codemirror.css">
   <style>
-    body { padding:.5rem; }
+    body { padding:.5rem; background:#eee;}
     c-entry + c-entry {margin-top:1rem;}
   </style>
 
@@ -52,7 +52,7 @@ document.getElementById('tagXInput')
             .addEventListener('change', evt => {
               /**@type CEntry*/
               let ceTag = document.getElementById('customEventCE');
-              let log = `${ new Date().toLocaleTimeString() } change-addEventListener: 【evt.type:${ evt.type }】 【evt.detail:${ JSON.stringify(
+              let log = `change-addEventListener: 【evt.type:${ evt.type }】 【evt.detail:${ JSON.stringify(
                 evt.detail) }】`;
               ceTag.setAttribute('console-results', log);
             })
@@ -64,31 +64,24 @@ document.getElementById('tagXInput')
 <c-entry note="数据单属性双向绑定" id="dataBindCE" src-code="['./component/TagDataBinding.ts']">
   <tag-data-binding slot="render" value="1" name="foo" id="dataBinding"></tag-data-binding>
   <script type="module">
-    import { CommTool }    from "./com/tool/comm-tool.js";
-    import { Reflections } from './com/tool/Reflections.js'
+    import { CommTool } from "./com/tool/comm-tool.js";
+
     CommTool.closure(() => {
+      /**@type CEntry*/
+      let ceTag = document.getElementById('dataBindCE');
+
       /**@type TagDataBinding*/
       let tdb = document.getElementById('dataBinding');
+      tdb.setLogger(ceTag.logger);
+
       tdb.set('value', '2');
+      ceTag.setAttribute('console-results', '设值为 2');
 
       const o = window.o = {oName: 'foo'};
-      const op = tdb.bind(o, 'oName', 'value');
-      console.log('-----------------', "op.oName = 'bar-1'")
-      op.oName = 'bar-1';
-      console.log('o.oName', o.oName, o);
-      console.log('op.oName', op.oName, op.oName, op);
-
-      console.log('\n-----------------', "o.oName = 'bar-2'")
-      o.oName = 'bar-2';
-      console.log('o.oName', o.oName, o);
-      console.log('op.oName', op.oName, op.oName, op);
-
-      tdb.bind(o, 'value', 'value');
-      o.value = 1;
-
-      Reflections.watch(o, 'value', (nv, ov) => {
-        console.log('Reflections.watch[index.html]', ov, '==>', nv);
-      })
+      ceTag.setAttribute('console-results', `2s后绑定对象属性[oName:${ o.oName }]`);
+      setTimeout(() => {
+        window.op = tdb.bind(o, 'oName', 'value');
+      }, 2000)
     });
   </script>
 </c-entry>
